@@ -13,12 +13,24 @@ const CareerPage = () => {
     transition: { duration: 0.6 }
   };
 
+  const skills = {
+    'Frontend Development': [
+      'React', 'Vue.js', 'Redux', 'Vuex', 'Material UI', 'Vuetify'
+    ],
+    'Programming Languages': [
+      'JavaScript', 'TypeScript', 'HTML5', 'CSS3'
+    ],
+    'Development Tools': [
+      'Vite', 'Webpack', 'Git', 'BitBucket', 'VS Code'
+    ]
+  };
+
   const experiences = [
     {
       company: 'Apple Inc.',
       title: 'Senior Software Engineer',
-      date: 'Jan 2025 - Present',
-      location: 'Cupertino, CA',
+      period: 'Jan 2025 - Present',
+      location: 'Hyderabad, India',
       description: 'Leading frontend development for Apple Maps web application.',
       achievements: [
         'Engineered critical features using micro frontend architecture, increasing deployment frequency by 20%',
@@ -26,14 +38,14 @@ const CareerPage = () => {
         'Enhanced inter-module communication efficiency by 10%',
         'Optimized frontend performance achieving 5% decrease in load time'
       ],
-      skills: ['React', 'TypeScript', 'Micro Frontends', 'GraphQL']
+      skills: ['React', 'Redux', 'TypeScript', 'Micro Frontends', 'GraphQL']
     },
     {
       company: 'Rakuten',
-      title: 'Senior Software Engineer I',
-      date: 'Mar 2022 - Jan 2025',
-      location: 'Tokyo, Japan',
-      description: 'Led frontend development and performance optimization initiatives.',
+      title: 'Senior Software Engineer',
+      period: 'Mar 2022 - Jan 2025',
+      location: 'Bangalore, India',
+      description: 'Leading frontend development and performance optimization initiatives.',
       achievements: [
         'Enhanced React.js application performance by 78% through optimization',
         'Implemented Okta authentication for 24,000+ users',
@@ -42,13 +54,13 @@ const CareerPage = () => {
         'Reduced deployment time by 40% through CI/CD improvements',
         'Achieved 98% accessibility score through responsive design'
       ],
-      skills: ['React', 'Webpack', 'Okta', 'Jenkins', 'Bitbucket']
+      skills: ['React', 'Redux', 'Vite', 'Webpack', 'Okta', 'Jenkins', 'Bitbucket']
     },
     {
       company: 'Cognizant Technology Solutions',
       title: 'Programmer Analyst',
-      date: 'Jan 2020 - Mar 2022',
-      location: 'Hyderabad, India',
+      period: 'Jan 2020 - Mar 2022',
+      location: 'Bangalore, India',
       description: 'Developed and maintained React applications for JPMC.',
       achievements: [
         'Increased user engagement by 30% through responsive design',
@@ -56,30 +68,52 @@ const CareerPage = () => {
         'Reduced load times by 40% through optimization',
         'Enhanced data retrieval times by 25%'
       ],
-      skills: ['React', 'Bootstrap', 'Sass', 'RESTful APIs']
+      skills: ['React', 'Material-UI', 'Bootstrap', 'Sass', 'RESTful APIs']
     }
   ];
 
-  const achievements = [
+  const awards = [
     {
-      icon: '💼',
-      title: '5+ Years',
-      description: 'Professional Experience'
+      year: '2024',
+      title: 'Best Individual Contributor Award',
+      company: 'Rakuten',
+      description: 'Recognized for outstanding individual contributions and exceptional performance.'
     },
     {
-      icon: '🚀',
-      title: '20+ Projects',
-      description: 'Successfully Delivered'
+      year: '2022',
+      title: 'Best New Comer Award',
+      company: 'Rakuten',
+      description: 'Awarded for exceptional performance and quick adaptation as a new team member.'
     },
     {
-      icon: '⭐',
-      title: '98% Success',
-      description: 'Client Satisfaction Rate'
+      year: '2021',
+      title: 'The Ultimate Contributor Award',
+      company: 'Cognizant',
+      description: 'Honored for significant contributions and dedication to project success.'
+    }
+  ];
+
+  const certifications = [
+    {
+      name: 'Frontend Developer (React)',
+      issuer: 'HackerRank',
+      date: '2024',
+      link: 'https://www.hackerrank.com/certificates/3b03bd64ba21',
+      skills: ['React', 'Frontend Development', 'Web Applications']
     },
     {
-      icon: '💡',
-      title: '10+ Technologies',
-      description: 'Mastered & Implemented'
+      name: 'JavaScript',
+      issuer: 'HackerRank',
+      date: '2024',
+      link: 'https://www.hackerrank.com/certificates/4e52c891b885',
+      skills: ['JavaScript', 'Problem Solving', 'Web Development']
+    },
+    {
+      name: 'JavaScript Algorithms and Data Structures',
+      issuer: 'freeCodeCamp',
+      date: '2023',
+      link: 'https://www.freecodecamp.org/certification/pavankalyanpayyavula/javascript-algorithms-and-data-structures',
+      skills: ['JavaScript', 'Data Structures', 'Algorithms', 'Problem Solving']
     }
   ];
 
@@ -91,73 +125,153 @@ const CareerPage = () => {
         animate={fadeIn.animate}
         transition={fadeIn.transition}
       >
-        <h1>Professional Journey</h1>
-        <p>
-          A track record of delivering innovative solutions and driving technical excellence 
-          in frontend development across industry-leading companies.
-        </p>
+        <h1>Career Journey</h1>
+        <p>Exploring my professional path and achievements</p>
       </motion.div>
 
-      <motion.div 
-        className="timeline"
-        initial={fadeIn.initial}
-        animate={fadeIn.animate}
-        transition={{ ...fadeIn.transition, delay: 0.2 }}
-      >
-        {experiences.map((exp, index) => (
-          <motion.div 
-            key={exp.company}
-            className="timeline-item"
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={{ ...fadeIn.transition, delay: 0.2 * index }}
-          >
-            <div className="timeline-dot"></div>
-            <div className="timeline-content">
-              <div className="timeline-date">{exp.date}</div>
-              <h3 className="timeline-title">{exp.title}</h3>
-              <div className="timeline-company">{exp.company} • {exp.location}</div>
-              <p className="timeline-description">{exp.description}</p>
-              
-              <ul className="timeline-achievements">
-                {exp.achievements.map((achievement, i) => (
-                  <li key={i}>{achievement}</li>
-                ))}
-              </ul>
+      <div className="career-content">
+        <motion.section 
+          className="experience-section"
+          initial={fadeIn.initial}
+          animate={fadeIn.animate}
+          transition={{ ...fadeIn.transition, delay: 0.1 }}
+        >
+          <h2>Professional Experience</h2>
+          <div className="timeline">
+            {experiences.map((exp, index) => (
+              <motion.div 
+                key={`${exp.company}-${exp.period}`}
+                className="timeline-item"
+                initial={fadeIn.initial}
+                animate={fadeIn.animate}
+                transition={{ ...fadeIn.transition, delay: 0.1 * index }}
+              >
+                <div className="timeline-dot"></div>
+                <div className="timeline-content">
+                  <div className="timeline-header">
+                    <h3>{exp.title}</h3>
+                    <span className="timeline-period">{exp.period}</span>
+                  </div>
+                  <div className="company-info">
+                    <span className="company-name">{exp.company}</span>
+                    <span className="company-location">{exp.location}</span>
+                  </div>
+                  <p className="job-description">{exp.description}</p>
+                  <ul className="achievements-list">
+                    {exp.achievements.map((achievement, i) => (
+                      <li key={i}>{achievement}</li>
+                    ))}
+                  </ul>
+                  <div className="skills-list">
+                    {exp.skills.map((skill, i) => (
+                      <span key={i} className="skill-tag">{skill}</span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
 
-              <div className="skills-list">
-                {exp.skills.map((skill, i) => (
-                  <span key={i} className="skill-tag">{skill}</span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+        <motion.section 
+          className="skills-section"
+          initial={fadeIn.initial}
+          animate={fadeIn.animate}
+          transition={{ ...fadeIn.transition, delay: 0.2 }}
+        >
+          <h2>Technical Skills</h2>
+          <div className="skills-container">
+            {Object.entries(skills).map(([category, skillsList], index) => (
+              <motion.div 
+                key={category}
+                className="skill-category"
+                initial={fadeIn.initial}
+                animate={fadeIn.animate}
+                transition={{ ...fadeIn.transition, delay: 0.1 * index }}
+              >
+                <h3>{category}</h3>
+                <div className="skills-list">
+                  {skillsList.map((skill, i) => (
+                    <span key={i} className="skill-tag">{skill}</span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
 
-      <motion.div 
-        className="achievements"
-        initial={fadeIn.initial}
-        animate={fadeIn.animate}
-        transition={{ ...fadeIn.transition, delay: 0.4 }}
-      >
-        <h2>Key Achievements</h2>
-        <div className="achievement-grid">
-          {achievements.map((achievement, index) => (
-            <motion.div 
-              key={index}
-              className="achievement-card"
-              initial={fadeIn.initial}
-              animate={fadeIn.animate}
-              transition={{ ...fadeIn.transition, delay: 0.4 + (index * 0.1) }}
-            >
-              <div className="achievement-icon">{achievement.icon}</div>
-              <h3 className="achievement-title">{achievement.title}</h3>
-              <p className="achievement-description">{achievement.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+        <motion.section 
+          className="awards-section"
+          initial={fadeIn.initial}
+          animate={fadeIn.animate}
+          transition={{ ...fadeIn.transition, delay: 0.3 }}
+        >
+          <h2>Awards & Recognition</h2>
+          <div className="awards-grid">
+            {awards.map((award, index) => (
+              <motion.div 
+                key={award.title}
+                className="award-card"
+                initial={fadeIn.initial}
+                animate={fadeIn.animate}
+                transition={{ ...fadeIn.transition, delay: 0.1 * index }}
+              >
+                <div className="award-icon">🏆</div>
+                <div className="award-content">
+                  <h3>{award.title}</h3>
+                  <div className="award-meta">
+                    <span className="award-company">{award.company}</span>
+                    <span className="award-year">{award.year}</span>
+                  </div>
+                  <p>{award.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        <motion.section 
+          className="certifications-section"
+          initial={fadeIn.initial}
+          animate={fadeIn.animate}
+          transition={{ ...fadeIn.transition, delay: 0.4 }}
+        >
+          <h2>Certifications</h2>
+          <div className="certifications-grid">
+            {certifications.map((cert, index) => (
+              <motion.div 
+                key={cert.name}
+                className="certification-card"
+                initial={fadeIn.initial}
+                animate={fadeIn.animate}
+                transition={{ ...fadeIn.transition, delay: 0.1 * index }}
+              >
+                <div className="cert-icon">📜</div>
+                <div className="cert-content">
+                  <h3>{cert.name}</h3>
+                  <div className="cert-meta">
+                    <span className="cert-issuer">{cert.issuer}</span>
+                    <span className="cert-date">{cert.date}</span>
+                  </div>
+                  <div className="cert-skills">
+                    {cert.skills.map(skill => (
+                      <span key={skill} className="skill-tag">{skill}</span>
+                    ))}
+                  </div>
+                  <a 
+                    href={cert.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="cert-link"
+                  >
+                    View Certificate →
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+      </div>
     </div>
   );
 };

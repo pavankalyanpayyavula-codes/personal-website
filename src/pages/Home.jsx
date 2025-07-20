@@ -30,7 +30,7 @@ const Home = () => {
       icon: '⚙️',
       title: 'Backend Integration',
       description: 'Connecting frontend applications with robust backend services.',
-      skills: ['RESTful APIs', 'Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Firebase']
+      skills: ['RESTful APIs', 'Node.js', 'Express', 'MongoDB', 'SQL', 'Firebase']
     },
     {
       icon: '🚀',
@@ -42,15 +42,15 @@ const Home = () => {
 
   const education = [
     {
-      year: '2016 - 2020',
-      degree: 'Bachelor of Technology in Computer Science',
-      school: 'Jawaharlal Nehru Technological University',
+      year: '2015 - 2019',
+      degree: 'Bachelor of Technology in Electronics and Communication Engineering',
+      school: 'Jawaharlal Nehru Technological University - Kakinada',
       description: 'Graduated with distinction, focusing on software engineering and web technologies.'
     },
     {
-      year: '2014 - 2016',
+      year: '2013 - 2015',
       degree: 'Intermediate Education (MPC)',
-      school: 'Sri Chaitanya Junior College',
+      school: 'Siddartha Junior College',
       description: 'Completed with 97.7% aggregate in Mathematics, Physics, and Chemistry.'
     }
   ];
@@ -59,8 +59,9 @@ const Home = () => {
     { icon: '🎮', title: 'Gaming' },
     { icon: '📚', title: 'Reading' },
     { icon: '✈️', title: 'Traveling' },
+    { icon: '🏏', title: 'Cricket' },
+    { icon: '🏸', title: 'Badminton' },
     { icon: '🎵', title: 'Music' },
-    { icon: '📷', title: 'Photography' },
     { icon: '🏃', title: 'Fitness' }
   ];
 
@@ -183,4 +184,4 @@ const Home = () => {
   );
 };
 
-export default Home; 
+export default Home;
