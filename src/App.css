@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  min-height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-content {
+  min-height: calc(108vh - 80px);
+  padding-top: 80px; /* Height of navbar */
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Container sizes for different screen widths */
+.section,
+.page-container,
+.about-container,
+.career-container,
+.blogs-container,
+.contact-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .section,
+  .page-container,
+  .about-container,
+  .career-container,
+  .blogs-container,
+  .contact-container {
+    max-width: 1320px;
+    padding: 3rem;
+  }
+}
+
+/* Medium-large screens */
+@media (max-width: 1399px) and (min-width: 1200px) {
+  .section,
+  .page-container,
+  .about-container,
+  .career-container,
+  .blogs-container,
+  .contact-container {
+    max-width: 1140px;
+    padding: 2.5rem;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .section,
+  .page-container,
+  .about-container,
+  .career-container,
+  .blogs-container,
+  .contact-container {
+    max-width: 960px;
+  }
+}
+
+/* Small-medium screens */
+@media (max-width: 991px) and (min-width: 768px) {
+  .section,
+  .page-container,
+  .about-container,
+  .career-container,
+  .blogs-container,
+  .contact-container {
+    max-width: 720px;
+    padding: 1.75rem;
+  }
+}
+
+/* Small screens */
+@media (max-width: 767px) and (min-width: 576px) {
+  .section,
+  .page-container,
+  .about-container,
+  .career-container,
+  .blogs-container,
+  .contact-container {
+    max-width: 540px;
+    padding: 1.5rem;
+  }
+
+  .main-content {
+    padding-top: 70px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 575px) {
+  .section,
+  .page-container,
+  .about-container,
+  .career-container,
+  .blogs-container,
+  .contact-container {
+    width: 100%;
+    padding: 1.25rem;
+  }
+
+  .main-content {
+    padding-top: 70px;
+  }
+}
+
+/* Utility classes for spacing */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-5 { margin-top: 2.5rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.mb-5 { margin-bottom: 2.5rem; }
+
+.py-1 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-2 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-3 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.py-4 { padding-top: 2rem; padding-bottom: 2rem; }
+.py-5 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
