@@ -33,12 +33,9 @@ const CareerPage = () => {
       location: 'Hyderabad, India',
       description: 'Leading frontend development working for Apple Maps as a vendor from Payoda',
       achievements: [
-        'Developed and maintained front-end applications for internal Apple Maps tools used by Reviewers and QC Reviewers
-         to verify and validate map data quality.',
-        'Built tools to streamline the review workflow and improve the accuracy of data verification for Apple Maps quality
-         control teams.',
-        'Collaborated with cross-functional engineering teams to integrate micro-frontends into the Apple Maps ecosystem,
-         increasing intermodule communication efficiency by 10%.',
+        'Developed and maintained front-end applications for internal Apple Maps tools used by Reviewers and QC Reviewers to verify and validate map data quality.',
+        'Built tools to streamline the review workflow and improve the accuracy of data verification for Apple Maps quality control teams.',
+        'Collaborated with cross-functional engineering teams to integrate micro-frontends into the Apple Maps ecosystem, increasing intermodule communication efficiency by 10%.',
         'Optimized code performance and resolved UI bottlenecks, resulting in a 5% reduction in average page load time.'
       ],
       skills: ['React', 'Redux', 'TypeScript', 'Micro Frontends', 'GraphQL']
@@ -50,12 +47,11 @@ const CareerPage = () => {
       location: 'Bangalore, India',
       description: 'Leading frontend development and performance optimization initiatives.',
       achievements: [
-        'Significantly improved the performance of a large-scale React.js application by 78% through comprehensive bundle
-        size analysis, tree shaking, image optimization, and lazy loading techniques, resulting in a faster and smoother user experience.',
+        'Significantly improved the performance of a large-scale React.js application by 78% through comprehensive bundle size analysis, tree shaking, image optimization, and lazy loading techniques, resulting in a faster and smoother user experience.',
         'Successfully led the integration of Okta for secure and seamless user authentication, enhancing the overall login process and improving the application security for over 24,000 users.',
         'Collaborated closely with designers and stakeholders to create modern, intuitive, and accessible user interfaces using Figma, contributing to a 30% increase in overall user satisfaction and engagement.',
         'Spearheaded the migration of the existing codebase from Webpack 4 to Webpack 5, improving build performance, module federation support, and overall development efficiency by 25%.',
-        'Achieved an accessibility score of 98% by implementing responsive design principles, semantic HTML, and ARIA best practices, while reducing the initial page load time by 50%, thus improving usability across diverse groups of users and devices.'
+        'Achieved an accessibility score of 98% by implementing responsive design principles, semantic HTML, and ARIA best practices, while reducing the initial page load time by 50%, thus improving user experience for all users.'
       ],
       skills: ['React', 'Redux', 'Vite', 'Webpack', 'Okta', 'Jenkins', 'Bitbucket']
     },
@@ -66,7 +62,7 @@ const CareerPage = () => {
       location: 'Bangalore, India',
       description: 'Developed and maintained React applications for JPMC.',
       achievements: [
-        'Developed a highly responsive and accessible front-end application for JPMorgan Chase using React.js and Bootstrap, which enhanced the digital banking experience and led to a 30% increase in user engagement.',
+        'Developed a highly responsive and accessible front-end application for JPMorgan Chase using React.js and Bootstrap, which enhanced the digital banking experience and led to a 30% increase in customer satisfaction.',
         'Built modular and reusable React components to streamline UI development and reduce duplication, utilizing npm and Yarn for efficient dependency and package management.',
         'Collaborated with back-end engineers and API architects to design and integrate robust RESTful APIs, reducing data retrieval time by 25% and enabling smooth synchronization across services.'
       ],
@@ -278,4 +274,4 @@ const CareerPage = () => {
   );
 };
 
-export default CareerPage; 
+export default CareerPage;
