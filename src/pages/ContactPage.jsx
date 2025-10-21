@@ -148,11 +148,11 @@ const ContactPage = () => {
                 <p>linkedin.com/in/pavankalyanpayyavula24</p>
               </div>
             </a>
-            <a href="https://github.com/PavankalyanPayyavula" target="_blank" rel="noopener noreferrer" className="contact-method">
+            <a href="https://github.com/pavankalyanpayyavula-codes" target="_blank" rel="noopener noreferrer" className="contact-method">
               <div className="method-icon">🐱</div>
               <div className="method-details">
                 <h3>GitHub</h3>
-                <p>/github.com/PavankalyanPayyavula</p>
+                <p>/github.com/pavankalyanpayyavula-codes</p>
               </div>
             </a>
           </div>
