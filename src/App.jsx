@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Layout from './components/Layout';
 import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
 import CareerPage from './pages/CareerPage';
@@ -16,46 +17,12 @@ function App() {
           <Route exact path="/" element={<LandingPage />} />
 
           {/* Other pages with navbar */}
-          <Route path="/about" element={
-            <>
-              <Navbar />
-              <main className="main-content">
-                <div className="page-container">
-                  <Home />
-                </div>
-              </main>
-            </>
-          } />
-          <Route path="/career" element={
-            <>
-              <Navbar />
-              <main className="main-content">
-                <div className="page-container">
-                  <CareerPage />
-                </div>
-              </main>
-            </>
-          } />
-          <Route path="/blogs" element={
-            <>
-              <Navbar />
-              <main className="main-content">
-                <div className="page-container">
-                  <BlogsPage />
-                </div>
-              </main>
-            </>
-          } />
-          <Route path="/contact" element={
-            <>
-              <Navbar />
-              <main className="main-content">
-                <div className="page-container">
-                  <ContactPage />
-                </div>
-              </main>
-            </>
-          } />
+          <Route element={<Layout />}>
+            <Route path="/about" element={<Home />} />
+            <Route path="/career" element={<CareerPage />} />
+            <Route path="/blogs" element={<BlogsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Route>
 
           {/* Catch all undefined routes and redirect to landing */}
           <Route path="*" element={<Navigate to="/" replace />} />

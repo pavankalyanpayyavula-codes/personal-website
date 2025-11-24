@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 import '../styles/Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ links = [] }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -32,7 +32,7 @@ const Navbar = () => {
           <Link to="/" className="nav-logo" onClick={closeMenu}>
             <Logo />
           </Link>
-          <button 
+          <button
             className={`hamburger ${isOpen ? 'active' : ''}`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
@@ -42,44 +42,19 @@ const Navbar = () => {
             <span></span>
           </button>
         </div>
-        
+
         <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
-          <li>
-            <Link 
-              to="/about" 
-              className={isActive('/about') ? 'active' : ''}
-              onClick={closeMenu}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/career" 
-              className={isActive('/career') ? 'active' : ''}
-              onClick={closeMenu}
-            >
-              Career
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/blogs" 
-              className={isActive('/blogs') ? 'active' : ''}
-              onClick={closeMenu}
-            >
-              Blogs
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/contact" 
-              className={isActive('/contact') ? 'active' : ''}
-              onClick={closeMenu}
-            >
-              Contact
-            </Link>
-          </li>
+          {links.map((link) => (
+            <li key={link.path}>
+              <Link
+                to={link.path}
+                className={isActive(link.path) ? 'active' : ''}
+                onClick={closeMenu}
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>

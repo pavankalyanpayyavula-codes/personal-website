@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import FadeIn from '../components/FadeIn';
+import { getContactData } from '../services/dataService';
 import '../styles/ContactPage.css';
 
 const ContactPage = () => {
-  useEffect(() => {
-    document.title = 'Contact | Pavan Kalyan';
-  }, []);
-
+  const [contactData, setContactData] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,11 +20,14 @@ const ContactPage = () => {
     message: ''
   });
 
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
+  useEffect(() => {
+    document.title = 'Contact | Pavan Kalyan';
+    const fetchData = async () => {
+      const data = await getContactData();
+      setContactData(data);
+    };
+    fetchData();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +39,7 @@ const ContactPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.message) {
       setFormStatus({
         submitted: false,
@@ -77,7 +79,7 @@ const ContactPage = () => {
         error: false,
         message: 'Thank you for your message! I will get back to you soon.'
       });
-      
+
       setFormData({
         name: '',
         email: '',
@@ -95,74 +97,54 @@ const ContactPage = () => {
     }
   };
 
+  if (!contactData) return <div className="loading-spinner"></div>;
+
   return (
     <div className="contact-container">
-      <motion.div 
-        className="contact-header"
-        initial={fadeIn.initial}
-        animate={fadeIn.animate}
-        transition={fadeIn.transition}
-      >
+      <FadeIn className="contact-header">
         <h1>Get in Touch</h1>
         <p>Let's connect and create something amazing together</p>
-      </motion.div>
+      </FadeIn>
 
-      <motion.div
-        className="contact-description"
-        initial={fadeIn.initial}
-        animate={fadeIn.animate}
-        transition={{ ...fadeIn.transition, delay: 0.2 }}
-      >
+      <FadeIn className="contact-description" delay={0.2}>
         <h2>Looking for a Skilled Developer?</h2>
         <p>
-          I'm always excited to take on new challenges and collaborate on innovative projects. 
-          Whether you have a specific project in mind or just want to discuss potential opportunities, 
+          I'm always excited to take on new challenges and collaborate on innovative projects.
+          Whether you have a specific project in mind or just want to discuss potential opportunities,
           I'm here to help turn your ideas into reality.
         </p>
         <p>
-          Feel free to reach out through any of the contact methods below or fill out the contact form. 
+          Feel free to reach out through any of the contact methods below or fill out the contact form.
           I typically respond within 24 hours.
         </p>
-      </motion.div>
+      </FadeIn>
 
       <div className="contact-content">
-        <motion.div 
-          className="contact-info"
-          initial={fadeIn.initial}
-          animate={fadeIn.animate}
-          transition={{ ...fadeIn.transition, delay: 0.3 }}
-        >
+        <FadeIn className="contact-info" delay={0.3}>
           <h2>Contact Information</h2>
           <div className="contact-methods">
-            <a href="mailto:pavankalyanpayyavula24@gmail.com" className="contact-method">
+            <a href={`mailto:${contactData.email}`} className="contact-method">
               <div className="method-icon">📧</div>
               <div className="method-details">
                 <h3>Email</h3>
-                <p>pavankalyanpayyavula24@gmail.com</p>
+                <p>{contactData.email}</p>
               </div>
             </a>
-            <a href="https://www.linkedin.com/in/pavankalyanpayyavula24/" target="_blank" rel="noopener noreferrer" className="contact-method">
-              <div className="method-icon">💼</div>
-              <div className="method-details">
-                <h3>LinkedIn</h3>
-                <p>linkedin.com/in/pavankalyanpayyavula24</p>
-              </div>
-            </a>
-            <a href="https://github.com/pavankalyanpayyavula-codes" target="_blank" rel="noopener noreferrer" className="contact-method">
-              <div className="method-icon">🐱</div>
-              <div className="method-details">
-                <h3>GitHub</h3>
-                <p>/github.com/pavankalyanpayyavula-codes</p>
-              </div>
-            </a>
+            {contactData.socials.map(social => (
+              <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="contact-method">
+                <div className="method-icon">{social.icon}</div>
+                <div className="method-details">
+                  <h3>{social.name}</h3>
+                  <p>{social.display}</p>
+                </div>
+              </a>
+            ))}
           </div>
-        </motion.div>
+        </FadeIn>
 
-        <motion.div 
+        <FadeIn
           className="contact-form-container"
-          initial={fadeIn.initial}
-          animate={fadeIn.animate}
-          transition={{ ...fadeIn.transition, delay: 0.4 }}
+          delay={0.4}
         >
           <div className="form-header">
             <h2>Send a Message</h2>
@@ -222,7 +204,7 @@ const ContactPage = () => {
             </div>
 
             {formStatus.message && (
-              <motion.div 
+              <motion.div
                 className={formStatus.error ? 'error-message' : 'success-message'}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -232,7 +214,7 @@ const ContactPage = () => {
               </motion.div>
             )}
 
-            <button 
+            <button
               type="submit"
               className="submit-button"
               disabled={isSubmitting}
@@ -247,10 +229,10 @@ const ContactPage = () => {
               )}
             </button>
           </form>
-        </motion.div>
+        </FadeIn>
       </div>
     </div>
   );
 };
 
-export default ContactPage; 
+export default ContactPage;
