@@ -43,15 +43,15 @@ const Home = () => {
         <div className="profile-content">
           <h2>Hello, I'm Pavan Kalyan</h2>
           <p>
-            With over 5 years of experience in frontend development, I've had the privilege of working
-            with industry leaders like Apple, Rakuten, and Cognizant. My expertise lies in building
-            scalable web applications using modern technologies and best practices.
+            With nearly 6 years as a Senior Frontend Engineering, I've delivered high-impact solutions for Apple (Maps automation), Rakuten, and JPMorgan Chase (via Cognizant).
           </p>
           <p>
-            Currently working at Apple Inc. on the Maps web application, where I focus on
-            implementing micro frontend architecture and optimizing performance for millions of users
-            worldwide.
+            Currently architecting React 18/TypeScript monorepo for Apple's FusionX Maps platform—scalable micro-frontends powering analysis/review of 20+ geospatial features (narrow roads, speed limits, landmarks) used by global QC teams.
           </p>
+          <p>
+            Expertise: React, TypeScript, Redux Toolkit, React Query, Vite, GraphQL.
+          </p>
+
         </div>
       </FadeIn>
 

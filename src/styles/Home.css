@@ -30,7 +30,6 @@
 
 .profile-image {
   flex: 0 0 300px;
-  height: 300px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -38,8 +37,8 @@
 
 .profile-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 .profile-content {
@@ -164,7 +163,6 @@
   color: var(--text-secondary);
 }
 
-/* Interests section */
 .interests-section {
   margin-bottom: var(--spacing-xl);
 }
@@ -208,8 +206,9 @@
   }
 
   .profile-image {
-    flex: 0 0 250px;
-    height: 250px;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px;
     margin: 0 auto;
   }
 
@@ -225,11 +224,10 @@
   }
 
   .profile-image {
-    flex: 0 0 200px;
-    height: 200px;
+    max-width: 250px;
   }
 
   .interests-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-} 
+}

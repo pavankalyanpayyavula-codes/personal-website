@@ -107,16 +107,15 @@ const ContactPage = () => {
       </FadeIn>
 
       <FadeIn className="contact-description" delay={0.2}>
-        <h2>Looking for a Skilled Developer?</h2>
+        <h2>Need Senior Frontend Expertise?</h2>
         <p>
-          I'm always excited to take on new challenges and collaborate on innovative projects.
-          Whether you have a specific project in mind or just want to discuss potential opportunities,
-          I'm here to help turn your ideas into reality.
+          <strong>Currently architecting React Projects for <em>Apple Maps</em></strong>—scalable micro-frontends powering global QC for 20+ geospatial features (narrow roads, speed limits, landmarks).
         </p>
         <p>
-          Feel free to reach out through any of the contact methods below or fill out the contact form.
-          I typically respond within 24 hours.
+          Delivered 48% Rakuten performance gains + work experience on banking project with JPMorgan engagement growth.
+          Reach out—respond within 24 hours.
         </p>
+
       </FadeIn>
 
       <div className="contact-content">

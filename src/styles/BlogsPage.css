@@ -132,6 +132,20 @@
   transform: translateX(4px);
 }
 
+.read-more.coming-soon {
+  color: var(--text-secondary);
+  cursor: default;
+  background: rgba(0, 0, 0, 0.05);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+}
+
+.read-more.coming-soon:hover {
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.05);
+}
+
 /* Categories filter */
 .categories-filter {
   display: flex;
@@ -257,4 +271,4 @@
     width: 100%;
     text-align: center;
   }
-} 
+}

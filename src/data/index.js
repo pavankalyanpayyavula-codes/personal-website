@@ -1,4 +1,4 @@
-import profileImg from '../assets/profile.png';
+import profileImg from '../assets/profile.jpg';
 
 export const navigation = [
     { name: 'About', path: '/about' },
@@ -46,93 +46,103 @@ export const home = {
             year: '2013 - 2015',
             degree: 'Intermediate Education (MPC)',
             school: 'Siddartha Junior College',
-            description: 'Completed with 97.7% aggregate in Mathematics, Physics, and Chemistry.'
+            description: 'Completed with 94.1% aggregate overall.'
         }
     ],
     interests: [
-        { icon: '🎮', title: 'Gaming' },
         { icon: '📚', title: 'Reading' },
         { icon: '✈️', title: 'Traveling' },
+        { icon: '🙏', title: 'Devotional' },
+        { icon: '👨‍👩‍👧‍👦', title: 'Family Man' },
         { icon: '🏏', title: 'Cricket' },
         { icon: '🏸', title: 'Badminton' },
-        { icon: '🎵', title: 'Music' },
         { icon: '🏃', title: 'Fitness' }
     ]
 };
 
 export const career = {
     skills: {
-        'Frontend Development': [
-            'React', 'Vue.js', 'Redux', 'Vuex', 'Material UI', 'Vuetify'
+        'Frontend Frameworks': [
+            'React', 'Vue.js', 'Redux Toolkit', 'Vuex', 'React Query'
         ],
         'Programming Languages': [
-            'JavaScript', 'TypeScript', 'HTML5', 'CSS3'
+            'JavaScript (ES6+)', 'TypeScript', 'HTML5', 'CSS3'
+        ],
+        'UI & Styling': [
+            'Blueprint.js', 'styled-components', 'Bootstrap', 'Material UI', 'Vuetify', 'Figma'
         ],
         'Development Tools': [
-            'Vite', 'Webpack', 'Git', 'BitBucket', 'VS Code'
+            'Vite', 'Webpack 5', 'Storybook', 'Vitest', 'Git', 'GitHub', 'Bitbucket', 'Jenkins', 'VS Code'
+        ],
+        'APIs & Data': [
+            'GraphQL', 'RESTful APIs', 'OpenAPI', 'MySQL'
+        ],
+        'Architecture': [
+            'Micro Frontends', 'Monorepo (npm workspaces)', 'Okta Auth'
         ]
-    },
+    }
+    ,
     experiences: [
         {
-            company: 'Apple Inc.',
-            title: 'Senior Software Engineer',
+            company: 'Apple Inc. (via Payoda)',
+            title: 'Senior Software Engineer (Contractor)',
             period: 'Jan 2025 - Present',
             location: 'Hyderabad, India',
-            description: 'Leading frontend development working for Apple Maps as a vendor from Payoda',
+            description: 'Architecting React/TypeScript monorepo for FusionX Maps automation—scalable micro-frontends analyzing 20+ geospatial features (narrow roads, speed limits, landmarks) for global QC teams.',
             achievements: [
-                'Developed and maintained front-end applications for internal Apple Maps tools used by Reviewers and QC Reviewers to verify and validate map data quality.',
-                'Built tools to streamline the review workflow and improve the accuracy of data verification for Apple Maps quality control teams.',
-                'Collaborated with cross-functional engineering teams to integrate micro-frontends into the Apple Maps ecosystem, increasing intermodule communication efficiency by 10%.',
-                'Optimized code performance and resolved UI bottlenecks, resulting in a 5% reduction in average page load time.'
+                'Engineered plugin architecture with Redux Toolkit, React Query, Blueprint.js—boosted cross-module scalability & developer velocity by 40%.',
+                'Deployed micro-frontends within monorepo, accelerating Apple Maps data validation workflows by 15%.',
+                'Optimized Vite builds & UI performance, reducing page load times by 5% and enabling 10% faster intermodule communication.',
+                'Built tools streamlining review workflows for narrow roads, statutory speeds, landmarks—handling legacy automations like rail crossings & turn restrictions.'
             ],
-            skills: ['React', 'Redux', 'TypeScript', 'Micro Frontends', 'GraphQL']
-        },
+            skills: ['React', 'TypeScript', 'Redux Toolkit', 'React Query', 'Vite', 'Micro Frontends', 'GraphQL', 'Blueprint.js', 'Storybook']
+        }
+        ,
         {
-            company: 'Rakuten',
-            title: 'Senior Software Engineer',
+            company: 'Rakuten India',
+            title: 'Senior Software Engineer I',
             period: 'Mar 2022 - Jan 2025',
             location: 'Bangalore, India',
-            description: 'Leading frontend development and performance optimization initiatives.',
+            description: 'Drove 78% React app performance gains + Webpack 5 migration for 24K+ users.',
             achievements: [
-                'Significantly improved the performance of a large-scale React.js application by 78% through comprehensive bundle size analysis, tree shaking, image optimization, and lazy loading techniques, resulting in a faster and smoother user experience.',
-                'Successfully led the integration of Okta for secure and seamless user authentication, enhancing the overall login process and improving the application security for over 24,000 users.',
-                'Collaborated closely with designers and stakeholders to create modern, intuitive, and accessible user interfaces using Figma, contributing to a 30% increase in overall user satisfaction and engagement.',
-                'Spearheaded the migration of the existing codebase from Webpack 4 to Webpack 5, improving build performance, module federation support, and overall development efficiency by 25%.',
-                'Achieved an accessibility score of 98% by implementing responsive design principles, semantic HTML, and ARIA best practices, while reducing the initial page load time by 50%, thus improving user experience for all users.'
+                'Engineered 48% performance boost via bundle analysis, tree shaking, lazy loading—transformed large-scale React app UX.',
+                'Led Okta authentication integration securing 24,000+ users with seamless login flows.',
+                'Migrated Webpack 4→5 + achieved 98% accessibility (ARIA, semantic HTML), cutting load times 50%.',
+                'Partnered with design teams via Figma for 30% user satisfaction growth through intuitive UIs.'
             ],
-            skills: ['React', 'Redux', 'Vite', 'Webpack', 'Okta', 'Jenkins', 'Bitbucket']
+            skills: ['React', 'Webpack 5', 'Okta', 'Figma', 'Jenkins', 'Bitbucket', 'Redux', 'ARIA']
         },
         {
             company: 'Cognizant Technology Solutions',
             title: 'Programmer Analyst',
             period: 'Jan 2020 - Mar 2022',
             location: 'Bangalore, India',
-            description: 'Developed and maintained React applications for JPMC.',
+            description: 'Engineered React digital banking platform for JPMorgan Chase',
             achievements: [
-                'Developed a highly responsive and accessible front-end application for JPMorgan Chase using React.js and Bootstrap, which enhanced the digital banking experience and led to a 30% increase in customer satisfaction.',
-                'Built modular and reusable React components to streamline UI development and reduce duplication, utilizing npm and Yarn for efficient dependency and package management.',
-                'Collaborated with back-end engineers and API architects to design and integrate robust RESTful APIs, reducing data retrieval time by 25% and enabling smooth synchronization across services.'
+                'Built responsive React.js/Bootstrap front-end for \textbf{JPMorgan Chase} banking.',
+                'Architected modular React components with npm/Yarn, cutting UI development time 40%.',
+                'Integrated RESTful APIs with backend teams, slashing data retrieval 25% for high-volume transactions.'
             ],
-            skills: ['React', 'Material-UI', 'Bootstrap', 'Sass', 'RESTful APIs']
+            skills: ['React', 'Bootstrap', 'npm/Yarn', 'RESTful APIs', 'JPMorgan Chase']
         }
     ],
     awards: [
         {
             year: '2024',
-            title: 'Best Individual Contributor Award',
-            company: 'Rakuten',
+            title: 'Individual Contributor Excellence Award',
+            company: 'Rakuten India',
             description: 'Recognized for outstanding individual contributions and exceptional performance.'
         },
         {
             year: '2022',
             title: 'Best New Comer Award',
-            company: 'Rakuten',
+            company: 'Rakuten India',
             description: 'Awarded for exceptional performance and quick adaptation as a new team member.'
         },
         {
             year: '2021',
             title: 'The Ultimate Contributor Award',
-            company: 'Cognizant',
+            company: 'Cognizant Technology',
             description: 'Honored for significant contributions and dedication to project success.'
         }
     ],
@@ -212,7 +222,7 @@ export const blogs = {
         },
         {
             id: 3,
-            title: 'From Junior to Senior Developer',
+            title: 'From Zero to Frontend Developer',
             category: 'career',
             date: 'Coming Soon',
             readTime: '8 min read',
