@@ -6,7 +6,7 @@ import { getNavigation } from '../services/dataService';
 import programmerGif from '../assets/programmer.gif';
 import '../styles/LandingPage.css';
 
-const LandingPage: React.FC = () => {
+const LandingPage = () => {
   const [navLinks, setNavLinks] = useState<{ name: string; path: string }[]>([]);
 
   useEffect(() => {
