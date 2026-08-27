@@ -7,7 +7,7 @@ import programmerGif from '../assets/programmer.gif';
 import '../styles/LandingPage.css';
 
 const LandingPage = () => {
-  const [navLinks, setNavLinks] = useState<{ name: string; path: string }[]>([]);
+  const [navLinks, setNavLinks] = useState([]);
 
   useEffect(() => {
     document.title = 'Pavan Kalyan';
