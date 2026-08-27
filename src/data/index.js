@@ -62,111 +62,123 @@ export const home = {
 
 export const career = {
     skills: {
-        'Frontend Frameworks': [
-            'React', 'Vue.js', 'Redux Toolkit', 'Vuex', 'React Query'
+        'Languages & Frameworks': [
+            'React', 'Vue.js', 'JavaScript', 'TypeScript', 'CSS', 'HTML', 'Redux Toolkit', 'Vuex', 'React Query'
         ],
-        'Programming Languages': [
-            'JavaScript (ES6+)', 'TypeScript', 'HTML5', 'CSS3'
+        'Leadership & Collaboration': [
+            'Team Leadership', 'Mentoring', 'Technical Interviewing', 'Code Review', 'Cross-functional Collaboration'
         ],
-        'UI & Styling': [
-            'Blueprint.js', 'styled-components', 'Bootstrap', 'Material UI', 'Vuetify', 'Figma'
+        'AI Tools': [
+            'Claude AI', 'Copilot AI', 'Gemini Pro', 'Cursor'
         ],
-        'Development Tools': [
-            'Vite', 'Webpack 5', 'Storybook', 'Vitest', 'Git', 'GitHub', 'Bitbucket', 'Jenkins', 'VS Code'
+        'Tools & Platforms': [
+            'Vite', 'Webpack', 'Git', 'GitHub', 'Bitbucket', 'Jenkins', 'Figma', 'Visual Studio Code', 'Storybook', 'Vitest', 'Blueprint.js', 'Styled-components'
         ],
-        'APIs & Data': [
-            'GraphQL', 'RESTful APIs', 'OpenAPI', 'MySQL'
-        ],
-        'Architecture': [
-            'Micro Frontends', 'Monorepo (npm workspaces)', 'Okta Auth'
+        'Database & APIs': [
+            'GraphQL', 'RESTful APIs'
         ]
-    }
-    ,
+    },
     experiences: [
         {
-            company: 'Apple Inc. (via Payoda)',
-            title: 'Senior Software Engineer (Contractor)',
+            company: 'Payoda Technologies (Client: Apple)',
+            title: 'Senior Software Engineer I',
             period: 'Jan 2025 - Present',
             location: 'Hyderabad, India',
-            description: 'Architecting React/TypeScript monorepo for FusionX Maps automation—scalable micro-frontends analyzing 20+ geospatial features (narrow roads, speed limits, landmarks) for global QC teams.',
+            description: 'Leading frontend engineering for Apple Maps review tools and shared systems used by production reviewers.',
             achievements: [
-                'Engineered plugin architecture with Redux Toolkit, React Query, Blueprint.js—boosted cross-module scalability & developer velocity by 40%.',
-                'Deployed micro-frontends within monorepo, accelerating Apple Maps data validation workflows by 15%.',
-                'Optimized Vite builds & UI performance, reducing page load times by 5% and enabling 10% faster intermodule communication.',
-                'Built tools streamlining review workflows for narrow roads, statutory speeds, landmarks—handling legacy automations like rail crossings & turn restrictions.'
+                'Lead and mentor a team of 4 frontend developers, owning sprint planning, code reviews, technical direction, and technical interviews for front-end hiring.',
+                'Built a new Apple Maps feature from scratch that lets reviewers verify landmark-based turn-by-turn directions, taking it from initial design through full production launch.',
+                'Fixed a persistent, hard-to-diagnose bug where the app’s automatic break-tracking feature failed to pause correctly when a reviewer’s screen locked or switched tabs, a production issue that had gone unresolved by others on the team.',
+                'Built a new analytics feature that shows managers how much time reviewers spend on each task, giving the team better visibility into productivity.',
+                'Designed the shared component system and framework that now powers 20+ feature modules across the application, making it faster for the team to build and ship new features.',
+                'Shipped 70+ bug fixes and new features across a dozen+ areas in a live Apple Maps review tool used daily by production reviewers.'
             ],
-            skills: ['React', 'TypeScript', 'Redux Toolkit', 'React Query', 'Vite', 'Micro Frontends', 'GraphQL', 'Blueprint.js', 'Storybook']
-        }
-        ,
+            skills: ['React', 'Vue.js', 'TypeScript', 'Redux Toolkit', 'Vuex', 'React Query', 'Vite', 'GraphQL', 'Blueprint.js', 'Storybook']
+        },
         {
             company: 'Rakuten India',
             title: 'Senior Software Engineer I',
             period: 'Mar 2022 - Jan 2025',
             location: 'Bangalore, India',
-            description: 'Drove 78% React app performance gains + Webpack 5 migration for 24K+ users.',
+            description: 'Built and improved large-scale React applications while mentoring engineers and supporting frontend hiring.',
             achievements: [
-                'Engineered 48% performance boost via bundle analysis, tree shaking, lazy loading—transformed large-scale React app UX.',
-                'Led Okta authentication integration securing 24,000+ users with seamless login flows.',
-                'Migrated Webpack 4→5 + achieved 98% accessibility (ARIA, semantic HTML), cutting load times 50%.',
-                'Partnered with design teams via Figma for 30% user satisfaction growth through intuitive UIs.'
+                'Mentored 3 junior engineers through code reviews and pairing sessions, and participated in technical interviews for front-end engineering candidates.',
+                'Led the integration of Okta for secure, seamless user authentication, strengthening login security across the application’s user base.',
+                'Improved the performance of a large-scale React.js application through bundle size analysis, tree shaking, image optimization, and lazy loading, resulting in a noticeably faster and smoother user experience.',
+                'Collaborated closely with designers and stakeholders to create modern, intuitive, and accessible user interfaces using Figma.',
+                'Spearheaded the migration of the existing codebase from Webpack 4 to Webpack 5, improving build performance, module federation support, and overall development efficiency.'
             ],
-            skills: ['React', 'Webpack 5', 'Okta', 'Figma', 'Jenkins', 'Bitbucket', 'Redux', 'ARIA']
+            skills: ['React', 'JavaScript', 'Webpack 5', 'Okta', 'Figma', 'Jenkins', 'Bitbucket', 'Redux', 'ARIA']
         },
         {
-            company: 'Cognizant Technology Solutions',
+            company: 'Cognizant Technology Solutions (Client: JP Morgan & Chase)',
             title: 'Programmer Analyst',
             period: 'Jan 2020 - Mar 2022',
             location: 'Bangalore, India',
-            description: 'Engineered React digital banking platform for JPMorgan Chase',
+            description: 'Engineered frontend experiences for a digital banking platform.',
             achievements: [
-                'Built responsive React.js/Bootstrap front-end for \textbf{JPMorgan Chase} banking.',
-                'Architected modular React components with npm/Yarn, cutting UI development time 40%.',
-                'Integrated RESTful APIs with backend teams, slashing data retrieval 25% for high-volume transactions.'
+                'Engineered a responsive React.js/Bootstrap front-end for the digital banking platform, improving the overall user experience.',
+                'Partnered with backend engineers to integrate RESTful APIs, improving data retrieval speed and enabling seamless cross-service synchronization for high-volume banking transactions.'
             ],
-            skills: ['React', 'Bootstrap', 'npm/Yarn', 'RESTful APIs', 'JPMorgan Chase']
+            skills: ['React', 'JavaScript', 'Bootstrap', 'RESTful APIs', 'JPMorgan Chase']
         }
     ],
     awards: [
         {
-            year: '2024',
-            title: 'Individual Contributor Excellence Award',
-            company: 'Rakuten India',
-            description: 'Recognized for outstanding individual contributions and exceptional performance.'
+            year: '2026',
+            title: 'Persistence Award',
+            company: 'Payoda Technologies, Apple Project',
+            description: 'Recognized for persistence and commitment while delivering critical production work.'
         },
         {
-            year: '2022',
-            title: 'Best New Comer Award',
+            year: '2022 - 2024',
+            title: 'Individual Contributor Excellence Award & Best Newcomer Award',
             company: 'Rakuten India',
-            description: 'Awarded for exceptional performance and quick adaptation as a new team member.'
+            description: 'Recognized for exceptional individual contribution and strong performance as a new team member.'
         },
         {
-            year: '2021',
+            year: 'October 2021',
             title: 'The Ultimate Contributor Award',
             company: 'Cognizant Technology',
             description: 'Honored for significant contributions and dedication to project success.'
+        }
+    ],
+    education: [
+        {
+            year: '2019',
+            degree: 'ECE - B.Tech',
+            school: 'Jawaharlal Nehru Technological University, Kakinada',
+            description: 'Bachelor of Technology in Electronics and Communication Engineering.'
         }
     ],
     certifications: [
         {
             name: 'Frontend Developer (React)',
             issuer: 'HackerRank',
-            date: '2024',
-            link: 'https://www.hackerrank.com/certificates/3b03bd64ba21',
-            skills: ['React', 'Frontend Development', 'Web Applications']
+            date: 'Credential ID: 3b03bd64ba21',
+            link: '#',
+            skills: ['React', 'Frontend Development']
         },
         {
             name: 'JavaScript',
             issuer: 'HackerRank',
-            date: '2024',
-            link: 'https://www.hackerrank.com/certificates/4e52c891b885',
-            skills: ['JavaScript', 'Problem Solving', 'Web Development']
+            date: 'Credential ID: 4e52c891b885',
+            link: '#',
+            skills: ['JavaScript', 'Problem Solving']
         },
         {
-            name: 'JavaScript Algorithms and Data Structures',
-            issuer: 'freeCodeCamp',
-            date: '2023',
-            link: 'https://www.freecodecamp.org/certification/pavankalyanpayyavula/javascript-algorithms-and-data-structures',
-            skills: ['JavaScript', 'Data Structures', 'Algorithms', 'Problem Solving']
+            name: 'Introduction to Model Context Protocol',
+            issuer: 'Anthropic Education',
+            date: 'Apr 2026 · ID: vt5qxvzipcw9',
+            link: '#',
+            skills: ['MCP', 'AI Tools']
+        },
+        {
+            name: 'Building with the Claude API',
+            issuer: 'Anthropic Education',
+            date: 'Apr 2026 · ID: encnbz7ewyvg9',
+            link: '#',
+            skills: ['Claude API', 'AI Development']
         }
     ]
 };
