@@ -22,6 +22,9 @@ npm test             # run all tests once
 npm run test:watch   # re-run on save
 ```
 
+Vercel runs the tests before every deploy (`buildCommand` in `vercel.json`). If any
+test fails, the deploy stops and the live site keeps the last good version.
+
 Vitest + React Testing Library. Component and page tests sit next to their files
 (`*.test.jsx`); tests for `api/` and `dev/` live in `tests/`, because Vercel would
 deploy any file inside `api/` as a function.
