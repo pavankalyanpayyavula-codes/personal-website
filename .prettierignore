@@ -5,3 +5,5 @@ package-lock.json
 public
 *.timestamp-*
 .vercel
+# Vercel rewrites this file during its build, so its formatting is not ours to check.
+vercel.json
