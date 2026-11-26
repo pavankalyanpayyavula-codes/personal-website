@@ -1,5 +1,11 @@
-.filters { margin-bottom: 1.5rem; }
-.filters [role='group'] { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.filters {
+  margin-bottom: 1.5rem;
+}
+.filters [role='group'] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
 .filter {
   padding: 0.45rem 1rem;
   border: 1px solid var(--line);
@@ -8,12 +14,24 @@
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 500;
-  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
-.filter:hover { color: var(--ink); border-color: var(--ink); }
-.filter.is-active { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.filter:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.filter.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
 
-.post-list { border-top: 1px solid var(--line); }
+.post-list {
+  border-top: 1px solid var(--line);
+}
 .post {
   position: relative;
   padding: 1.75rem 0;
@@ -27,11 +45,24 @@
   color: var(--faint);
   margin-bottom: 0.5rem;
 }
-.post-title { font-size: clamp(1.3rem, 2.4vw, 1.6rem); margin-bottom: 0.5rem; }
-.post-title a { text-decoration: none; }
-.post-title a::after { content: ''; position: absolute; inset: 0; }
-.post-title a:hover { color: var(--accent); }
-.post-excerpt { max-width: 40rem; }
+.post-title {
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+  margin-bottom: 0.5rem;
+}
+.post-title a {
+  text-decoration: none;
+}
+.post-title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.post-title a:hover {
+  color: var(--accent);
+}
+.post-excerpt {
+  max-width: 40rem;
+}
 .post-badge {
   display: inline-block;
   margin-top: 0.85rem;
@@ -44,6 +75,10 @@
   background: var(--accent-soft);
   color: var(--accent);
 }
-.post.is-upcoming .post-title { color: var(--muted); }
+.post.is-upcoming .post-title {
+  color: var(--muted);
+}
 
-.empty { padding: 2rem 0; }
+.empty {
+  padding: 2rem 0;
+}

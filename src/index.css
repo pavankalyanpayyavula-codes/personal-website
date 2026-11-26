@@ -83,25 +83,53 @@ h3 {
   text-wrap: balance;
 }
 
-h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); }
-h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
-h3 { font-size: 1.2rem; font-family: var(--font-sans); font-weight: 600; letter-spacing: -0.01em; }
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+h3 {
+  font-size: 1.2rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
 
-p { color: var(--muted); text-wrap: pretty; }
+p {
+  color: var(--muted);
+  text-wrap: pretty;
+}
 
-a { color: inherit; }
+a {
+  color: inherit;
+}
 
-img { display: block; max-width: 100%; height: auto; }
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
 button,
 input,
-textarea { font: inherit; color: inherit; }
+textarea {
+  font: inherit;
+  color: inherit;
+}
 
-button { cursor: pointer; }
+button {
+  cursor: pointer;
+}
 
-ul { list-style: none; }
+ul {
+  list-style: none;
+}
 
-::selection { background: var(--accent); color: var(--accent-ink); }
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
 
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -110,8 +138,15 @@ ul { list-style: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 /* ---------- Layout ---------- */
@@ -149,7 +184,9 @@ ul { list-style: none; }
   border-radius: var(--r-sm);
   text-decoration: none;
 }
-.skip-link:focus { top: 1rem; }
+.skip-link:focus {
+  top: 1rem;
+}
 
 /* ---------- Shared pieces ---------- */
 .eyebrow {
@@ -166,10 +203,16 @@ ul { list-style: none; }
   max-width: 680px;
   margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
 }
-.page-header h1 { margin-bottom: 1rem; }
-.page-header p { font-size: 1.125rem; }
+.page-header h1 {
+  margin-bottom: 1rem;
+}
+.page-header p {
+  font-size: 1.125rem;
+}
 
-.section { margin-top: clamp(3rem, 7vw, 5rem); }
+.section {
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
 .section-title {
   display: flex;
   align-items: baseline;
@@ -186,7 +229,11 @@ ul { list-style: none; }
   padding: 1.5rem;
 }
 
-.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
 .tag {
   font-size: 0.8rem;
   font-weight: 500;
@@ -208,14 +255,34 @@ ul { list-style: none; }
   font-weight: 600;
   font-size: 0.95rem;
   text-decoration: none;
-  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
-.btn:hover { transform: translateY(-1px); }
-.btn-primary { background: var(--accent); color: var(--accent-ink); }
-.btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, var(--ink)); }
-.btn-ghost { border-color: var(--line); color: var(--ink); background: transparent; }
-.btn-ghost:hover { border-color: var(--ink); }
-.btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--accent) 88%, var(--ink));
+}
+.btn-ghost {
+  border-color: var(--line);
+  color: var(--ink);
+  background: transparent;
+}
+.btn-ghost:hover {
+  border-color: var(--ink);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
 
 .text-link {
   color: var(--accent);
@@ -224,11 +291,14 @@ ul { list-style: none; }
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
   transition: border-color 0.2s ease;
 }
-.text-link:hover { border-color: var(--accent); }
+.text-link:hover {
+  border-color: var(--accent);
+}
 
 .visually-hidden {
   position: absolute !important;
-  width: 1px; height: 1px;
+  width: 1px;
+  height: 1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;

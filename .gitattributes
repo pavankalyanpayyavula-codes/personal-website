@@ -1,0 +1,6 @@
+# Keep LF line endings everywhere (matches .prettierrc.json / .editorconfig).
+* text=auto eol=lf
+*.pdf binary
+*.webp binary
+*.jpg binary
+*.png binary
