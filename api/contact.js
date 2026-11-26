@@ -5,6 +5,7 @@ import nodemailer from 'nodemailer';
 // Vercel environment variables:
 //   EMAIL_USER – your Gmail address (sends and receives the mail)
 //   EMAIL_PASS – a Gmail App Password: https://myaccount.google.com/apppasswords
+//   RECIPIENT_EMAIL – optional; defaults to EMAIL_USER with a "+portfolio" alias
 
 const LIMITS = { name: 100, email: 200, subject: 200, message: 5000 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -62,15 +63,19 @@ export default async function handler(req, res) {
     return res.status(500).json({ message: 'Email is not configured on the server.' });
   }
 
+  // Gmail files mail sent to your own address under "Sent", not the Inbox.
+  // A "+portfolio" alias reaches the same inbox but shows up as new mail.
+  const to = (process.env.RECIPIENT_EMAIL || '').trim() || user.replace('@', '+portfolio@');
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: { user, pass },
   });
 
   try {
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: `Portfolio contact form <${user}>`,
-      to: user,
+      to,
       replyTo: `${name} <${email}>`, // hitting Reply answers the visitor
       subject: subject ? `${subject} (from ${name})` : `New message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject || '-'}\n\n${message}`,
@@ -81,6 +86,7 @@ export default async function handler(req, res) {
         <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
       `,
     });
+    console.log(`Contact email sent to ${to} (${info.messageId})`);
     return res.status(200).json({ message: 'Message sent' });
   } catch (error) {
     // EAUTH = Gmail rejected EMAIL_USER/EMAIL_PASS; ETIMEDOUT/ECONNECTION = network blocked.
