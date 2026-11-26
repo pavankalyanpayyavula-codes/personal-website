@@ -15,6 +15,17 @@ The contact form posts to `api/contact.js`. On Vercel it runs as a serverless fu
 in `npm run dev` the dev server runs it for you. To send real email locally, copy
 `.env.example` to `.env` and fill in `EMAIL_USER` and `EMAIL_PASS`, then restart `npm run dev`.
 
+## Tests
+
+```bash
+npm test             # run all tests once
+npm run test:watch   # re-run on save
+```
+
+Vitest + React Testing Library. Component and page tests sit next to their files
+(`*.test.jsx`); tests for `api/` and `dev/` live in `tests/`, because Vercel would
+deploy any file inside `api/` as a function.
+
 ## Editing content
 
 All text lives in [`src/data/index.js`](src/data/index.js): skills, experience, awards,
@@ -37,6 +48,8 @@ Redeploy after adding them. Each submission arrives with the visitor's subject (
 
 ```
 api/contact.js       serverless function that emails form submissions
+dev/localApi.js      runs api/contact.js inside `npm run dev`
+tests/               tests for api/ and dev/
 public/              favicon and link-preview image
 src/data/index.js    all site content
 src/components/      layout, navbar, footer, shared bits
