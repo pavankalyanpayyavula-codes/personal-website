@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FadeIn from '../components/FadeIn';
 import SocialIcon from '../components/SocialIcon';
 import useDocumentTitle from '../hooks/useDocumentTitle';
@@ -12,6 +12,13 @@ const ContactPage = () => {
   useDocumentTitle('Contact');
   const [form, setForm] = useState(EMPTY);
   const [status, setStatus] = useState({ state: 'idle', message: '' });
+
+  // Clear the "message sent" confirmation after 3 seconds.
+  useEffect(() => {
+    if (status.state !== 'success') return undefined;
+    const timer = setTimeout(() => setStatus({ state: 'idle', message: '' }), 3000);
+    return () => clearTimeout(timer);
+  }, [status]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
