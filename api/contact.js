@@ -1,12 +1,12 @@
 import nodemailer from 'nodemailer';
 
-// Emails each contact form submission (name, email, message) to you.
+// Emails each contact form submission (name, email, subject, message) to you.
 //
 // Vercel environment variables:
 //   EMAIL_USER – your Gmail address (sends and receives the mail)
 //   EMAIL_PASS – a Gmail App Password: https://myaccount.google.com/apppasswords
 
-const LIMITS = { name: 100, email: 200, message: 5000 };
+const LIMITS = { name: 100, email: 200, subject: 200, message: 5000 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const escapeHtml = (value) =>
@@ -35,6 +35,7 @@ export default async function handler(req, res) {
 
   const name = oneLine(body.name ?? '');
   const email = oneLine(body.email ?? '');
+  const subject = oneLine(body.subject ?? '');
   const message = String(body.message ?? '').trim();
 
   if (!name || !email || !message) {
@@ -43,7 +44,12 @@ export default async function handler(req, res) {
   if (!EMAIL_RE.test(email)) {
     return res.status(400).json({ message: 'Please enter a valid email address.' });
   }
-  if (name.length > LIMITS.name || email.length > LIMITS.email || message.length > LIMITS.message) {
+  if (
+    name.length > LIMITS.name ||
+    email.length > LIMITS.email ||
+    subject.length > LIMITS.subject ||
+    message.length > LIMITS.message
+  ) {
     return res.status(400).json({ message: 'Your message is too long.' });
   }
 
@@ -62,11 +68,12 @@ export default async function handler(req, res) {
       from: `Portfolio contact form <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       replyTo: `${name} <${email}>`, // hitting Reply answers the visitor
-      subject: `New message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      subject: subject ? `${subject} (from ${name})` : `New message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject || '-'}\n\n${message}`,
       html: `
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Subject:</strong> ${escapeHtml(subject || '-')}</p>
         <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
       `,
     });

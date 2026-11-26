@@ -5,7 +5,7 @@ import useDocumentTitle from '../hooks/useDocumentTitle';
 import { contact } from '../data';
 import '../styles/ContactPage.css';
 
-const EMPTY = { name: '', email: '', message: '', website: '' };
+const EMPTY = { name: '', email: '', subject: '', message: '', website: '' };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const ContactPage = () => {
@@ -112,6 +112,12 @@ const ContactPage = () => {
                 <input id="email" name="email" type="email" autoComplete="email" maxLength={200}
                   value={form.email} onChange={handleChange} required />
               </div>
+            </div>
+
+            <div className="field">
+              <label htmlFor="subject">Subject <span className="optional">(optional)</span></label>
+              <input id="subject" name="subject" type="text" maxLength={200}
+                value={form.subject} onChange={handleChange} />
             </div>
 
             <div className="field">
