@@ -78,13 +78,10 @@ export default async function handler(req, res) {
       to,
       replyTo: `${name} <${email}>`, // hitting Reply answers the visitor
       subject: subject ? `${subject} (from ${name})` : `New message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject || '-'}\n\n${message}`,
-      html: `
-        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Subject:</strong> ${escapeHtml(subject || '-')}</p>
-        <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
-      `,
+      // Body is just the visitor's message. Their name is in the subject line
+      // and in the sender shown on Reply; their email is the Reply-To.
+      text: message,
+      html: `<p style="white-space:pre-wrap">${escapeHtml(message)}</p>`,
     });
     console.log(`Contact email sent to ${to} (${info.messageId})`);
     return res.status(200).json({ message: 'Message sent' });
