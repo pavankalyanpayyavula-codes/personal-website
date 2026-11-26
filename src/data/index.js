@@ -15,27 +15,27 @@ export const home = {
     skills: [
         {
             icon: '💻',
-            title: 'Frontend Development',
-            description: 'Building responsive and performant web applications with modern technologies.',
-            skills: ['React', 'TypeScript', 'Next.js', 'Vue.js', 'Redux', 'GraphQL']
+            title: 'Frontend Engineering',
+            description: 'Building large React and Vue applications with TypeScript, solid state management and clean data fetching.',
+            skills: ['React', 'Vue.js', 'TypeScript', 'JavaScript', 'Redux Toolkit', 'Vuex', 'React Query', 'GraphQL', 'RESTful APIs']
         },
         {
             icon: '🎨',
-            title: 'UI/UX Design',
-            description: 'Creating beautiful and intuitive user interfaces with attention to detail.',
-            skills: ['CSS3', 'Sass', 'Tailwind', 'Framer Motion', 'Material-UI', 'Styled Components']
+            title: 'UI & Component Systems',
+            description: 'Designing shared component systems and accessible interfaces, working closely with designers.',
+            skills: ['HTML', 'CSS', 'Styled-components', 'Blueprint.js', 'Storybook', 'Figma']
         },
         {
-            icon: '⚙️',
-            title: 'Backend Integration',
-            description: 'Connecting frontend applications with robust backend services.',
-            skills: ['RESTful APIs', 'Node.js', 'Express', 'MongoDB', 'SQL', 'Firebase']
+            icon: '🧭',
+            title: 'Leadership & Collaboration',
+            description: 'Leading a frontend team: sprint planning, technical direction, mentoring and hiring.',
+            skills: ['Team Leadership', 'Mentoring', 'Technical Interviewing', 'Code Review', 'Cross-functional Collaboration']
         },
         {
             icon: '🚀',
-            title: 'Performance & DevOps',
-            description: 'Optimizing applications for speed and implementing CI/CD pipelines.',
-            skills: ['Webpack', 'Docker', 'Jenkins', 'AWS', 'Git', 'GitHub Actions']
+            title: 'Tooling, Performance & AI',
+            description: 'Fast builds, tested code and performance work, plus AI tools in the daily workflow.',
+            skills: ['Vite', 'Webpack', 'Vitest', 'Jenkins', 'Git', 'Bitbucket', 'Claude AI', 'Cursor', 'Copilot AI', 'Gemini Pro']
         }
     ],
     education: [
@@ -90,11 +90,11 @@ export const career = {
             description: 'Leading frontend engineering for Apple Maps review tools and shared systems used by production reviewers.',
             achievements: [
                 'Lead and mentor a team of 4 frontend developers, owning sprint planning, code reviews, technical direction, and technical interviews for front-end hiring.',
-                'Built a new Apple Maps feature from scratch that lets reviewers verify landmark-based turn-by-turn directions, taking it from initial design through full production launch.',
+                'Built a new Apple Maps feature from scratch that lets reviewers verify landmark-based turn-by-turn directions (for example, “turn at the gas station”) using map imagery, taking it from initial design through full production launch.',
                 'Fixed a persistent, hard-to-diagnose bug where the app’s automatic break-tracking feature failed to pause correctly when a reviewer’s screen locked or switched tabs, a production issue that had gone unresolved by others on the team.',
                 'Built a new analytics feature that shows managers how much time reviewers spend on each task, giving the team better visibility into productivity.',
                 'Designed the shared component system and framework that now powers 20+ feature modules across the application, making it faster for the team to build and ship new features.',
-                'Shipped 70+ bug fixes and new features across a dozen+ areas in a live Apple Maps review tool used daily by production reviewers.'
+                'Shipped 70+ bug fixes and new features across a dozen+ product areas in a live Apple Maps review tool used daily by production reviewers.'
             ],
             skills: ['React', 'Vue.js', 'TypeScript', 'Redux Toolkit', 'Vuex', 'React Query', 'Vite', 'GraphQL', 'Blueprint.js', 'Storybook']
         },
@@ -179,7 +179,7 @@ export const career = {
         {
             name: 'Building with the Claude API',
             issuer: 'Anthropic Education',
-            date: 'Apr 2026 · ID: encnbz7ewyvg9',
+            date: 'Apr 2026 · ID: encnb7e7w9yg',
             link: '#',
             skills: ['Claude API', 'AI Development']
         }

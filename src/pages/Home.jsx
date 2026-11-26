@@ -13,7 +13,7 @@ const Home = () => {
       <FadeIn className="page-header">
         <span className="eyebrow">About</span>
         <h1>Hello, I&apos;m Pavan.</h1>
-        <p>Senior frontend engineer. {years}+ years of building web apps that real teams depend on.</p>
+        <p>Front-end engineer with {years}+ years building React and TypeScript applications, currently leading a team of four.</p>
       </FadeIn>
 
       <section className="bio">

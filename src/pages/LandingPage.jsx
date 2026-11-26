@@ -25,8 +25,9 @@ const LandingPage = () => {
           <span className="eyebrow">Senior Software Engineer · Hyderabad, India</span>
           <h1>Pavan Kalyan Payyavula</h1>
           <p className="hero-lead">
-            I lead frontend engineering for Apple Maps review tools, and I&apos;ve spent {years}+ years
-            building React and Vue apps for teams at Rakuten and JPMorgan Chase.
+            Front-end engineer with {years}+ years building React and TypeScript applications. I lead a
+            team of four developers on Apple Maps review tools, covering architecture, code review,
+            mentoring and technical hiring.
           </p>
           <div className="hero-actions">
             <Link to="/career" className="btn btn-primary">See my work</Link>
