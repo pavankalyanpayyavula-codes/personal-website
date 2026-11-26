@@ -1,121 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import FadeIn from '../components/FadeIn';
-import { getHomeData } from '../services/dataService';
+import useDocumentTitle from '../hooks/useDocumentTitle';
+import { home, careerStartYear } from '../data';
 import '../styles/Home.css';
 
 const Home = () => {
-  const [homeData, setHomeData] = useState(null);
-
-  useEffect(() => {
-    document.title = 'About | Pavan Kalyan';
-    const fetchData = async () => {
-      const data = await getHomeData();
-      setHomeData(data);
-    };
-    fetchData();
-  }, []);
-
-  if (!homeData) return <div className="loading-spinner"></div>;
-
-  const { skills, education, interests } = homeData;
-
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
+  useDocumentTitle('About');
+  const years = new Date().getFullYear() - careerStartYear;
+  const { skills, education, interests } = home;
 
   return (
-    <div className="home-container">
-      <FadeIn className="home-header">
-        <h1>About Me</h1>
-        <p>
-          Senior Software Engineer passionate about creating exceptional web experiences
-          and solving complex technical challenges.
-        </p>
+    <div className="page container about">
+      <FadeIn className="page-header">
+        <span className="eyebrow">About</span>
+        <h1>Hello, I&apos;m Pavan.</h1>
+        <p>Front-end engineer with {years}+ years building React and TypeScript applications, currently leading a team of four.</p>
       </FadeIn>
 
-      <FadeIn className="profile-section" delay={0.2}>
-        <div className="profile-image">
-          <img src={homeData.profileImage} alt="Pavan Kalyan" />
-        </div>
-        <div className="profile-content">
-          <h2>Hello, I'm Pavan Kalyan</h2>
+      <section className="bio">
+        <FadeIn className="bio-photo">
+          <img src={home.profileImage} alt="Pavan Kalyan in the mountains" width="720" height="720" loading="lazy" />
+        </FadeIn>
+        <FadeIn className="bio-text" delay={0.1}>
           <p>
-            With nearly 6 years as a Senior Frontend Engineering, I've delivered high-impact solutions for Apple (Maps automation), Rakuten, and JPMorgan Chase (via Cognizant).
+            Today I lead a team of four frontend engineers building Apple Maps review tools at
+            Payoda Technologies. It&apos;s a React and TypeScript codebase where reviewers check
+            landmarks, speed limits, narrow roads and other map features before they reach production.
           </p>
           <p>
-            Currently architecting React 18/TypeScript monorepo for Apple's FusionX Maps platform—scalable micro-frontends powering analysis/review of 20+ geospatial features (narrow roads, speed limits, landmarks) used by global QC teams.
+            Before that I spent nearly three years at Rakuten making a large React app faster and moving
+            its sign-in to Okta, and two years at Cognizant building a digital banking front end for
+            JPMorgan Chase.
           </p>
           <p>
-            Expertise: React, TypeScript, Redux Toolkit, React Query, Vite, GraphQL.
+            Most of my work sits where product and platform meet: shared component systems, performance,
+            and the tooling that helps a team ship with confidence.
           </p>
+        </FadeIn>
+      </section>
 
-        </div>
-      </FadeIn>
-
-      <FadeIn className="skills-section" delay={0.3}>
-        <h2>Skills & Expertise</h2>
-        <div className="skills-grid">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.title}
-              className="skill-card"
-              initial={fadeIn.initial}
-              animate={fadeIn.animate}
-              transition={{ ...fadeIn.transition, delay: 0.3 + (index * 0.1) }}
-            >
-              <div className="skill-icon">{skill.icon}</div>
-              <h3 className="skill-title">{skill.title}</h3>
-              <p className="skill-description">{skill.description}</p>
-              <div className="skill-list">
-                {skill.skills.map(item => (
-                  <span key={item} className="skill-tag">{item}</span>
-                ))}
+      <section className="section">
+        <FadeIn className="section-title"><h2>Skills &amp; expertise</h2></FadeIn>
+        <div className="skill-grid">
+          {skills.map((skill, i) => (
+            <FadeIn key={skill.title} className="card skill-card" delay={i * 0.05}>
+              <h3>{skill.title}</h3>
+              <p>{skill.description}</p>
+              <div className="tags">
+                {skill.skills.map((item) => <span key={item} className="tag">{item}</span>)}
               </div>
-            </motion.div>
+            </FadeIn>
           ))}
         </div>
-      </FadeIn>
+      </section>
 
-      <FadeIn className="education-section" delay={0.4}>
-        <h2>Education</h2>
-        <div className="education-grid">
-          {education.map((edu, index) => (
-            <motion.div
-              key={edu.degree}
-              className="education-card"
-              initial={fadeIn.initial}
-              animate={fadeIn.animate}
-              transition={{ ...fadeIn.transition, delay: 0.4 + (index * 0.1) }}
-            >
-              <div className="education-year">{edu.year}</div>
-              <h3 className="education-degree">{edu.degree}</h3>
-              <div className="education-school">{edu.school}</div>
-              <p className="education-description">{edu.description}</p>
-            </motion.div>
+      <section className="section">
+        <FadeIn className="section-title"><h2>Education</h2></FadeIn>
+        <ul className="edu-list">
+          {education.map((edu) => (
+            <FadeIn as="li" key={edu.degree} className="edu-item">
+              <span className="edu-year">{edu.year}</span>
+              <div>
+                <h3>{edu.degree}</h3>
+                <p className="edu-school">{edu.school}</p>
+                <p>{edu.description}</p>
+              </div>
+            </FadeIn>
           ))}
-        </div>
-      </FadeIn>
+        </ul>
+      </section>
 
-      <FadeIn className="interests-section" delay={0.5}>
-        <h2>Interests & Hobbies</h2>
-        <div className="interests-grid">
-          {interests.map((interest, index) => (
-            <motion.div
-              key={interest.title}
-              className="interest-item"
-              initial={fadeIn.initial}
-              animate={fadeIn.animate}
-              transition={{ ...fadeIn.transition, delay: 0.5 + (index * 0.1) }}
-            >
-              <div className="interest-icon">{interest.icon}</div>
-              <div className="interest-title">{interest.title}</div>
-            </motion.div>
+      <section className="section">
+        <FadeIn className="section-title"><h2>Outside work</h2></FadeIn>
+        <FadeIn as="ul" className="interests">
+          {interests.map((it) => (
+            <li key={it.title}>
+              <span aria-hidden="true">{it.icon}</span> {it.title}
+            </li>
           ))}
-        </div>
-      </FadeIn>
+        </FadeIn>
+      </section>
     </div>
   );
 };

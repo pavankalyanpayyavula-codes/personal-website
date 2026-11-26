@@ -1,232 +1,141 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import FadeIn from '../components/FadeIn';
-import { getContactData } from '../services/dataService';
+import SocialIcon from '../components/SocialIcon';
+import useDocumentTitle from '../hooks/useDocumentTitle';
+import { contact } from '../data';
 import '../styles/ContactPage.css';
 
+const EMPTY = { name: '', email: '', subject: '', message: '', website: '' };
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const ContactPage = () => {
-  const [contactData, setContactData] = useState(null);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formStatus, setFormStatus] = useState({
-    submitted: false,
-    error: false,
-    message: ''
-  });
-
-  useEffect(() => {
-    document.title = 'Contact | Pavan Kalyan';
-    const fetchData = async () => {
-      const data = await getContactData();
-      setContactData(data);
-    };
-    fetchData();
-  }, []);
+  useDocumentTitle('Contact');
+  const [form, setForm] = useState(EMPTY);
+  const [status, setStatus] = useState({ state: 'idle', message: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus({
-        submitted: false,
-        error: true,
-        message: 'Please fill in all required fields'
-      });
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setStatus({ state: 'error', message: 'Please fill in your name, email and message.' });
+      return;
+    }
+    if (!EMAIL_RE.test(form.email.trim())) {
+      setStatus({ state: 'error', message: 'Please enter a valid email address.' });
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setFormStatus({
-        submitted: false,
-        error: true,
-        message: 'Please enter a valid email address'
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-
+    setStatus({ state: 'sending', message: '' });
     try {
-      const response = await fetch('/api/contact', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
       });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.message || 'Request failed');
 
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
-
-      setFormStatus({
-        submitted: true,
-        error: false,
-        message: 'Thank you for your message! I will get back to you soon.'
+      setStatus({ state: 'success', message: "Thanks, your message is on its way. I'll reply within a day or two." });
+      setForm(EMPTY);
+    } catch {
+      setStatus({
+        state: 'error',
+        message: `Sorry, the message didn't go through. You can email me directly at ${contact.email}.`,
       });
-
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-    } catch (error) {
-      setFormStatus({
-        submitted: false,
-        error: true,
-        message: 'Something went wrong. Please try again later.'
-      });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
-  if (!contactData) return <div className="loading-spinner"></div>;
+  const sending = status.state === 'sending';
 
   return (
-    <div className="contact-container">
-      <FadeIn className="contact-header">
-        <h1>Get in Touch</h1>
-        <p>Let's connect and create something amazing together</p>
+    <div className="page container contact">
+      <FadeIn className="page-header">
+        <span className="eyebrow">Contact</span>
+        <h1>Let&apos;s talk</h1>
+        <p>
+          Hiring for a senior frontend role, or need help with a React or Vue codebase?
+          Send a note and I&apos;ll get back to you within a day or two.
+        </p>
       </FadeIn>
 
-      <FadeIn className="contact-description" delay={0.2}>
-        <h2>Need Senior Frontend Expertise?</h2>
-        <p>
-          <strong>Currently architecting React Projects for <em>Apple Maps</em></strong>—scalable micro-frontends powering global QC for 20+ geospatial features (narrow roads, speed limits, landmarks).
-        </p>
-        <p>
-          Delivered 48% Rakuten performance gains + work experience on banking project with JPMorgan engagement growth.
-          Reach out—respond within 24 hours.
-        </p>
-
-      </FadeIn>
-
-      <div className="contact-content">
-        <FadeIn className="contact-info" delay={0.3}>
-          <h2>Contact Information</h2>
-          <div className="contact-methods">
-            <a href={`mailto:${contactData.email}`} className="contact-method">
-              <div className="method-icon">📧</div>
-              <div className="method-details">
-                <h3>Email</h3>
-                <p>{contactData.email}</p>
-              </div>
-            </a>
-            {contactData.socials.map(social => (
-              <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="contact-method">
-                <div className="method-icon">{social.icon}</div>
-                <div className="method-details">
-                  <h3>{social.name}</h3>
-                  <p>{social.display}</p>
-                </div>
+      <div className="contact-grid">
+        <FadeIn as="aside" className="contact-direct">
+          <h2>Reach me directly</h2>
+          <ul>
+            <li>
+              <a href={`mailto:${contact.email}`}>
+                <SocialIcon name="email" className="contact-icon" />
+                <span>
+                  <strong>Email</strong>
+                  <span>{contact.email}</span>
+                </span>
               </a>
+            </li>
+            {contact.socials.map((s) => (
+              <li key={s.name}>
+                <a href={s.url} target="_blank" rel="noopener noreferrer">
+                  <SocialIcon name={s.icon} className="contact-icon" />
+                  <span>
+                    <strong>{s.name}</strong>
+                    <span>{s.display}</span>
+                  </span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </FadeIn>
 
-        <FadeIn
-          className="contact-form-container"
-          delay={0.4}
-        >
-          <div className="form-header">
-            <h2>Send a Message</h2>
-            <p>Fill out the form below and I'll get back to you as soon as possible.</p>
-          </div>
-
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Name *</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your name"
-                required
-              />
+        <FadeIn className="card contact-form-card" delay={0.1}>
+          <form onSubmit={handleSubmit} noValidate>
+            <div className="field-row">
+              <div className="field">
+                <label htmlFor="name">Name</label>
+                <input id="name" name="name" type="text" autoComplete="name" maxLength={100}
+                  value={form.name} onChange={handleChange} required />
+              </div>
+              <div className="field">
+                <label htmlFor="email">Email</label>
+                <input id="email" name="email" type="email" autoComplete="email" maxLength={200}
+                  value={form.email} onChange={handleChange} required />
+              </div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Email *</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="your.email@example.com"
-                required
-              />
+            <div className="field">
+              <label htmlFor="subject">Subject <span className="optional">(optional)</span></label>
+              <input id="subject" name="subject" type="text" maxLength={200}
+                value={form.subject} onChange={handleChange} />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="subject">Subject</label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                placeholder="What's this about?"
-              />
+            <div className="field">
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" rows={6} maxLength={5000}
+                value={form.message} onChange={handleChange} required />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="message">Message *</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Your message here..."
-                required
-                rows="5"
-              />
+            {/* Honeypot for bots: hidden from people and screen readers. */}
+            <div className="hp" aria-hidden="true">
+              <label htmlFor="website">Website</label>
+              <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off"
+                value={form.website} onChange={handleChange} />
             </div>
 
-            {formStatus.message && (
-              <motion.div
-                className={formStatus.error ? 'error-message' : 'success-message'}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
+            <div className="form-footer">
+              <button type="submit" className="btn btn-primary" disabled={sending}>
+                {sending ? 'Sending…' : 'Send message'}
+              </button>
+              <p
+                className={`form-status ${status.state}`}
+                role={status.state === 'error' ? 'alert' : 'status'}
+                aria-live="polite"
               >
-                {formStatus.message}
-              </motion.div>
-            )}
-
-            <button
-              type="submit"
-              className="submit-button"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <>
-                  Sending...
-                  <span className="loading-spinner"></span>
-                </>
-              ) : (
-                'Send Message'
-              )}
-            </button>
+                {status.message}
+              </p>
+            </div>
           </form>
         </FadeIn>
       </div>
