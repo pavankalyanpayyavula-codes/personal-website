@@ -53,20 +53,24 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: 'Your message is too long.' });
   }
 
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+  const user = (process.env.EMAIL_USER || '').trim();
+  // Google shows App Passwords as "abcd efgh ijkl mnop"; the spaces aren't part of it.
+  const pass = (process.env.EMAIL_PASS || '').replace(/\s+/g, '');
+
+  if (!user || !pass) {
     console.error('EMAIL_USER / EMAIL_PASS are not configured');
     return res.status(500).json({ message: 'Email is not configured on the server.' });
   }
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
-    auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+    auth: { user, pass },
   });
 
   try {
     await transporter.sendMail({
-      from: `Portfolio contact form <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      from: `Portfolio contact form <${user}>`,
+      to: user,
       replyTo: `${name} <${email}>`, // hitting Reply answers the visitor
       subject: subject ? `${subject} (from ${name})` : `New message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject || '-'}\n\n${message}`,
@@ -79,7 +83,8 @@ export default async function handler(req, res) {
     });
     return res.status(200).json({ message: 'Message sent' });
   } catch (error) {
-    console.error('Error sending email:', error);
+    // EAUTH = Gmail rejected EMAIL_USER/EMAIL_PASS; ETIMEDOUT/ECONNECTION = network blocked.
+    console.error('Error sending email:', error.code || '', error.response || error.message);
     return res.status(500).json({ message: 'Could not send the message.' });
   }
 }
