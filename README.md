@@ -26,9 +26,9 @@ npm test             # run all tests once
 npm run test:watch   # re-run tests on save
 ```
 
-Vercel type-checks and runs the tests before every deploy (`buildCommand` in
-`vercel.json`). If either fails, the deploy stops and the live site keeps the last good
-version.
+Vercel runs `npm run check` before every deploy (`buildCommand` in `vercel.json`). A
+type error, lint error, unformatted file or failing test stops the deploy, and the live
+site keeps the last good version. Run `npm run check` before pushing to catch these first.
 
 Naming, formatting, file layout and testing conventions are written up in
 [`.claude/skills/code-conventions/SKILL.md`](.claude/skills/code-conventions/SKILL.md).

@@ -24,8 +24,10 @@ npm run check   # typecheck → lint → format:check → test, stops at the fir
 npm run build   # what Vercel builds
 ```
 
-`npm run format` fixes formatting. Vercel runs the tests before every deploy
-(`buildCommand` in `vercel.json`), so a red test blocks the release.
+`npm run format` fixes formatting. Vercel runs `npm run check && npm run build` before every
+deploy (`buildCommand` in `vercel.json`), so a type error, lint error, unformatted file or
+failing test blocks the release. `vercel.json` is excluded from Prettier because Vercel rewrites
+it during the build.
 
 ## Naming
 
