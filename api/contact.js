@@ -1,12 +1,12 @@
 import nodemailer from 'nodemailer';
 
-// Required Vercel environment variables:
-//   EMAIL_USER  – Gmail address that sends the mail
-//   EMAIL_PASS  – Gmail App Password (not your normal password)
-// Optional:
-//   RECIPIENT_EMAIL – where messages are delivered (defaults to EMAIL_USER)
+// Emails each contact form submission (name, email, message) to you.
+//
+// Vercel environment variables:
+//   EMAIL_USER – your Gmail address (sends and receives the mail)
+//   EMAIL_PASS – a Gmail App Password: https://myaccount.google.com/apppasswords
 
-const LIMITS = { name: 100, email: 200, subject: 200, message: 5000 };
+const LIMITS = { name: 100, email: 200, message: 5000 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const escapeHtml = (value) =>
@@ -17,7 +17,7 @@ const escapeHtml = (value) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 
-// Strip CR/LF so user input can never inject extra mail headers.
+// Strip line breaks so user input can never inject extra mail headers.
 const oneLine = (value) => String(value).replace(/[\r\n]+/g, ' ').trim();
 
 export default async function handler(req, res) {
@@ -27,30 +27,24 @@ export default async function handler(req, res) {
   }
 
   const body = typeof req.body === 'string' ? safeParse(req.body) : req.body || {};
-  const { name = '', email = '', subject = '', message = '', website = '' } = body;
 
-  // Honeypot: real visitors never see or fill this field.
-  if (website) {
+  // Honeypot: a hidden field only bots fill in. Pretend success and drop it.
+  if (body.website) {
     return res.status(200).json({ message: 'Message sent' });
   }
 
-  const clean = {
-    name: oneLine(name),
-    email: oneLine(email),
-    subject: oneLine(subject),
-    message: String(message).trim(),
-  };
+  const name = oneLine(body.name ?? '');
+  const email = oneLine(body.email ?? '');
+  const message = String(body.message ?? '').trim();
 
-  if (!clean.name || !clean.email || !clean.message) {
+  if (!name || !email || !message) {
     return res.status(400).json({ message: 'Name, email and message are required.' });
   }
-  if (!EMAIL_RE.test(clean.email)) {
+  if (!EMAIL_RE.test(email)) {
     return res.status(400).json({ message: 'Please enter a valid email address.' });
   }
-  for (const [field, max] of Object.entries(LIMITS)) {
-    if (clean[field].length > max) {
-      return res.status(400).json({ message: `${field} is too long.` });
-    }
+  if (name.length > LIMITS.name || email.length > LIMITS.email || message.length > LIMITS.message) {
+    return res.status(400).json({ message: 'Your message is too long.' });
   }
 
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
@@ -65,18 +59,15 @@ export default async function handler(req, res) {
 
   try {
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER,
-      replyTo: clean.email,
-      subject: `Portfolio contact: ${clean.subject || 'New message'}`,
-      text: `Name: ${clean.name}\nEmail: ${clean.email}\nSubject: ${clean.subject}\n\n${clean.message}`,
+      from: `Portfolio contact form <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      replyTo: `${name} <${email}>`, // hitting Reply answers the visitor
+      subject: `New message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
       html: `
-        <h3>New contact form submission</h3>
-        <p><strong>Name:</strong> ${escapeHtml(clean.name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(clean.email)}</p>
-        <p><strong>Subject:</strong> ${escapeHtml(clean.subject)}</p>
-        <p><strong>Message:</strong></p>
-        <p style="white-space:pre-wrap">${escapeHtml(clean.message)}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
       `,
     });
     return res.status(200).json({ message: 'Message sent' });

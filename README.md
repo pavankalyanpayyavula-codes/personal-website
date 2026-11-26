@@ -30,9 +30,11 @@ Set these environment variables in the Vercel project settings:
 
 | Variable | Value |
 | --- | --- |
-| `EMAIL_USER` | Gmail address that sends the mail |
+| `EMAIL_USER` | Your Gmail address. Messages are sent from and delivered to it |
 | `EMAIL_PASS` | A Gmail [App Password](https://myaccount.google.com/apppasswords) (needs 2-step verification) |
-| `RECIPIENT_EMAIL` | Optional. Where messages go; defaults to `EMAIL_USER` |
+
+Redeploy after adding them. Each submission arrives as "New message from <name>",
+and replying answers the visitor directly.
 
 ## Project layout
 
