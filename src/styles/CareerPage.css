@@ -1,512 +1,93 @@
-.career-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-xl);
-  min-height: calc(100vh - 80px);
+/* Timeline */
+.timeline { list-style: none; }
+.role {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
 }
+.role:last-child { border-bottom: 1px solid var(--line); }
 
-.career-header {
-  text-align: center;
-  margin-bottom: var(--spacing-xl);
-}
-
-.career-header h1 {
-  font-size: var(--text-4xl);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
-}
-
-.career-header p {
-  color: var(--text-secondary);
-  font-size: var(--text-lg);
-}
-
-.career-content {
+.role-meta {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing-xl) * 2);
+  gap: 0.2rem;
+  font-size: 0.875rem;
+  padding-top: 0.3rem;
 }
+.role-period { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.role-location { color: var(--faint); }
 
-/* Experience Section */
-.experience-section {
-  background: white;
-  padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
+.role-title { font-size: clamp(1.35rem, 2.4vw, 1.65rem); margin-bottom: 0.25rem; }
+.role-company { color: var(--accent); font-weight: 600; margin-bottom: 0.9rem; }
+.role-summary { color: var(--ink); margin-bottom: 1rem; max-width: 42rem; }
 
-.experience-section h2 {
-  font-size: var(--text-2xl);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-xl);
-  padding-bottom: var(--spacing-md);
-  border-bottom: 2px solid #f0f0f0;
-}
-
-.timeline {
+.role-achievements { margin-bottom: 1.25rem; max-width: 42rem; }
+.role-achievements li {
   position: relative;
-  padding-left: 2rem;
+  padding-left: 1.25rem;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
 }
-
-.timeline::before {
+.role-achievements li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--primary-color), #2563EB);
-}
-
-.timeline-item {
-  position: relative;
-  padding-bottom: var(--spacing-xl);
-}
-
-.timeline-item:last-child {
-  padding-bottom: 0;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -2.25rem;
-  width: 1rem;
-  height: 1rem;
-  background: white;
-  border: 2px solid var(--primary-color);
-  border-radius: 50%;
-  margin-top: 0.5rem;
-}
-
-.timeline-content {
-  background: #f8fafc;
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
-  border: 1px solid #e5e7eb;
-  transition: all 0.3s ease;
-}
-
-.timeline-content:hover {
-  transform: translateX(8px);
-  border-color: var(--primary-color);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.timeline-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-sm);
-}
-
-.timeline-header h3 {
-  font-size: var(--text-xl);
-  color: var(--text-primary);
-}
-
-.timeline-period {
-  padding: 4px 12px;
-  background: var(--primary-light);
-  border-radius: var(--radius-full);
-  color: var(--primary-color);
-  font-size: var(--text-sm);
-  font-weight: 500;
-}
-
-.company-info {
-  display: flex;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-  color: var(--text-secondary);
-  font-size: var(--text-base);
-}
-
-.company-name {
-  color: var(--primary-color);
-  font-weight: 500;
-}
-
-.company-location {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-}
-
-.job-description {
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-md);
-  line-height: 1.6;
-}
-
-.achievements-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 var(--spacing-md);
-}
-
-.achievements-list li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: var(--spacing-sm);
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-.achievements-list li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--primary-color);
-  font-weight: bold;
-}
-
-/* Awards Section */
-.awards-section,
-.certifications-section {
-  background: white;
-  padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-.awards-section h2,
-.certifications-section h2 {
-  font-size: var(--text-2xl);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-xl);
-  padding-bottom: var(--spacing-md);
-  border-bottom: 2px solid #f0f0f0;
-}
-
-.awards-grid,
-.certifications-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-lg);
-}
-
-/* Award Card */
-.award-card {
-  background: #f8fafc;
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
-  display: flex;
-  gap: var(--spacing-lg);
-  transition: all 0.3s ease;
-  border: 1px solid #e5e7eb;
-}
-
-.award-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: var(--primary-color);
-}
-
-.award-icon {
-  font-size: 2rem;
-  background: linear-gradient(135deg, var(--primary-color), #2563EB);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.award-content h3 {
-  font-size: var(--text-lg);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-xs);
-}
-
-.award-meta {
-  display: flex;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-sm);
-  color: var(--text-secondary);
-  font-size: var(--text-sm);
-}
-
-.award-company {
-  color: var(--primary-color);
-  font-weight: 500;
-}
-
-.award-year {
-  padding: 2px 8px;
-  background: var(--primary-light);
-  border-radius: var(--radius-full);
-  color: var(--primary-color);
-}
-
-/* Certification Card */
-.certification-card {
-  background: #f8fafc;
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
-  border: 1px solid #e5e7eb;
-  transition: all 0.3s ease;
-}
-
-.certification-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: var(--primary-color);
-}
-
-.cert-icon {
-  font-size: 2rem;
-  margin-bottom: var(--spacing-md);
-}
-
-.cert-content h3 {
-  font-size: var(--text-lg);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-xs);
-}
-
-.cert-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: var(--spacing-md);
-  color: var(--text-secondary);
-  font-size: var(--text-sm);
-}
-
-.cert-issuer {
-  color: var(--primary-color);
-  font-weight: 500;
-}
-
-.cert-date {
-  padding: 2px 8px;
-  background: var(--primary-light);
-  border-radius: var(--radius-full);
-  color: var(--primary-color);
-}
-
-.cert-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
-}
-
-.skill-tag {
-  padding: 6px 12px;
-  background: white;
-  border: 1px solid var(--primary-color);
-  border-radius: var(--radius-full);
-  color: var(--primary-color);
-  font-size: var(--text-sm);
-  transition: all 0.3s ease;
-}
-
-.skill-tag:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* Skills Section */
-.skills-section {
-  background: white;
-  padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-.skills-section h2 {
-  font-size: var(--text-2xl);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-xl);
-  padding-bottom: var(--spacing-md);
-  border-bottom: 2px solid #f0f0f0;
-  text-align: center;
-}
-
-.skills-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xl);
-}
-
-.skill-category {
-  background: #f8fafc;
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
-  border: 1px solid #e5e7eb;
-  transition: all 0.3s ease;
-}
-
-.skill-category:hover {
-  border-color: var(--primary-color);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.skill-category h3 {
-  font-size: var(--text-lg);
-  color: var(--primary-color);
-  margin-bottom: var(--spacing-md);
-  padding-bottom: var(--spacing-sm);
-  border-bottom: 1px solid var(--primary-light);
-}
-
-.skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
-}
-
-.skill-card {
-  background: white;
-  padding: var(--spacing-md);
-  border-radius: var(--radius-lg);
-  border: 1px solid #e5e7eb;
-}
-
-.skill-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-sm);
-}
-
-.skill-name {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.skill-level {
-  font-size: var(--text-sm);
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-}
-
-.skill-level.expert {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.skill-level.advanced {
-  background: #dbeafe;
-  color: #1e40af;
-}
-
-.skill-level.intermediate {
-  background: #fef9c3;
-  color: #854d0e;
-}
-
-.skill-bar {
+  top: 0.7em;
+  width: 6px;
   height: 6px;
-  background: #f1f5f9;
-  border-radius: var(--radius-full);
-  overflow: hidden;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
-.skill-progress {
-  height: 100%;
-  border-radius: var(--radius-full);
-  transition: width 1s ease-in-out;
+/* Skills */
+.skill-row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.skill-row:first-child { padding-top: 0; }
+.skill-row dt { font-weight: 600; font-size: 0.95rem; padding-top: 0.15rem; }
+
+/* Awards */
+.award-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.award { display: flex; flex-direction: column; }
+.award-year {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+.award h3 { margin-bottom: 0.35rem; line-height: 1.3; }
+.award-org { font-size: 0.9rem; color: var(--ink); margin-bottom: 0.6rem; }
+.award p:last-child { font-size: 0.925rem; }
+
+/* Certifications */
+.cert {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.cert:first-child { padding-top: 0; }
+.cert h3 { font-size: 1.05rem; margin-bottom: 0.1rem; }
+.cert-issuer { font-size: 0.9rem; }
+.cert-id { font-size: 0.8rem; color: var(--faint); text-align: right; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 860px) {
+  .award-grid { grid-template-columns: 1fr; }
 }
 
-.skill-progress.expert {
-  background: linear-gradient(to right, #22c55e, #16a34a);
+@media (max-width: 680px) {
+  .role { grid-template-columns: 1fr; gap: 0.75rem; }
+  .role-meta { flex-direction: row; gap: 0.75rem; }
+  .skill-row { grid-template-columns: 1fr; gap: 0.6rem; }
+  .cert { flex-direction: column; gap: 0.3rem; }
+  .cert-id { text-align: left; }
 }
-
-.skill-progress.advanced {
-  background: linear-gradient(to right, #3b82f6, #1d4ed8);
-}
-
-.skill-progress.intermediate {
-  background: linear-gradient(to right, #eab308, #ca8a04);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .career-container {
-    padding: var(--spacing-lg);
-  }
-
-  .timeline {
-    padding-left: 1.5rem;
-  }
-
-  .timeline-dot {
-    left: -1.75rem;
-  }
-
-  .timeline-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-xs);
-  }
-
-  .company-info {
-    flex-direction: column;
-    gap: var(--spacing-xs);
-  }
-
-  .awards-grid,
-  .certifications-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .award-card,
-  .certification-card {
-    padding: var(--spacing-md);
-  }
-
-  .career-header h1 {
-    font-size: var(--text-3xl);
-  }
-
-  .skills-container {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-  }
-
-  .skill-category {
-    padding: var(--spacing-md);
-  }
-
-  .skill-category h3 {
-    font-size: var(--text-lg);
-  }
-}
-
-@media (max-width: 480px) {
-  .career-container {
-    padding: var(--spacing-md);
-  }
-
-  .timeline-content {
-    padding: var(--spacing-md);
-  }
-
-  .timeline-header h3 {
-    font-size: var(--text-lg);
-  }
-
-  .award-card {
-    flex-direction: column;
-    gap: var(--spacing-md);
-  }
-
-  .award-icon,
-  .cert-icon {
-    font-size: 1.5rem;
-  }
-
-  .career-header h1 {
-    font-size: var(--text-2xl);
-  }
-
-  .award-meta,
-  .cert-meta {
-    flex-direction: column;
-    gap: var(--spacing-xs);
-  }
-
-  .skills-list {
-    flex-wrap: wrap;
-  }
-} 

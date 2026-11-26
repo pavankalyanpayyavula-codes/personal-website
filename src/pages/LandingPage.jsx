@@ -1,63 +1,96 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import { getNavigation } from '../services/dataService';
-import programmerGif from '../assets/programmer.gif';
+import FadeIn from '../components/FadeIn';
+import SocialIcon from '../components/SocialIcon';
+import useDocumentTitle from '../hooks/useDocumentTitle';
+import { home, career, contact, careerStartYear } from '../data';
 import '../styles/LandingPage.css';
 
 const LandingPage = () => {
-  const [navLinks, setNavLinks] = useState([]);
+  useDocumentTitle();
+  const years = new Date().getFullYear() - careerStartYear;
 
-  useEffect(() => {
-    document.title = 'Pavan Kalyan';
-    const fetchNav = async () => {
-      const links = await getNavigation();
-      setNavLinks(links);
-    };
-    fetchNav();
-  }, []);
+  const stats = [
+    { value: `${years}+`, label: 'years building production web apps' },
+    { value: '20+', label: 'feature modules on a component system I designed' },
+    { value: '70+', label: 'fixes and features shipped on Apple Maps tools' },
+    { value: '4', label: 'engineers I lead and mentor today' },
+  ];
+
+  const focus = ['React', 'TypeScript', 'Vue.js', 'Redux Toolkit', 'React Query', 'GraphQL', 'Vite', 'Storybook'];
 
   return (
-    <div className="landing-page">
-      <Navbar links={navLinks} />
-      <motion.div
-        className="content-container"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="sketch-container">
-          <motion.img
-            src={programmerGif}
-            alt="Programmer Animation"
-            className="developer-sketch"
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5 }}
-          />
-        </div>
-
-        <motion.div
-          className="name-container"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
+    <div className="landing">
+      <section className="hero container">
+        <FadeIn className="hero-copy">
+          <span className="eyebrow">Senior Software Engineer · Hyderabad, India</span>
           <h1>Pavan Kalyan Payyavula</h1>
-          <p className="title">Senior Software Engineer</p>
-        </motion.div>
+          <p className="hero-lead">
+            I lead frontend engineering for Apple Maps review tools, and I&apos;ve spent {years}+ years
+            building React and Vue apps for teams at Rakuten and JPMorgan Chase.
+          </p>
+          <div className="hero-actions">
+            <Link to="/career" className="btn btn-primary">See my work</Link>
+            <Link to="/contact" className="btn btn-ghost">Get in touch</Link>
+          </div>
+          <ul className="hero-social" aria-label="Elsewhere">
+            {contact.socials.map((s) => (
+              <li key={s.name}>
+                <a href={s.url} target="_blank" rel="noopener noreferrer">
+                  <SocialIcon name={s.icon} /> {s.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </FadeIn>
 
-        <motion.div
-          className="cta-buttons"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-        >
-          <Link to="/about" className="cta-button primary">About Me</Link>
-          <Link to="/contact" className="cta-button secondary">Get in Touch</Link>
-        </motion.div>
-      </motion.div>
+        <FadeIn className="hero-photo" delay={0.1}>
+          <img
+            src={home.profileImage}
+            alt="Pavan Kalyan smiling with arms outstretched in front of green mountains"
+            width="720"
+            height="720"
+            fetchpriority="high"
+          />
+        </FadeIn>
+      </section>
+
+      <section className="container" aria-label="Highlights">
+        <FadeIn as="ul" className="stats">
+          {stats.map((s) => (
+            <li key={s.label}>
+              <span className="stat-value">{s.value}</span>
+              <span className="stat-label">{s.label}</span>
+            </li>
+          ))}
+        </FadeIn>
+      </section>
+
+      <section className="container section">
+        <FadeIn className="section-title">
+          <h2>Where I&apos;ve worked</h2>
+        </FadeIn>
+        <ul className="work-list">
+          {career.experiences.map((exp, i) => (
+            <FadeIn as="li" key={exp.company} delay={i * 0.05} className="work-item">
+              <div>
+                <h3>{exp.company}</h3>
+                <p>{exp.title}</p>
+              </div>
+              <span className="work-period">{exp.period}</span>
+            </FadeIn>
+          ))}
+        </ul>
+        <Link to="/career" className="text-link more-link">Full career history →</Link>
+      </section>
+
+      <section className="container section">
+        <FadeIn className="focus">
+          <h2>What I work with</h2>
+          <div className="tags">
+            {focus.map((t) => <span key={t} className="tag">{t}</span>)}
+          </div>
+        </FadeIn>
+      </section>
     </div>
   );
 };

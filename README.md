@@ -1,12 +1,46 @@
-# React + Vite
+# Pavan Kalyan Payyavula · personal website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My portfolio site: about, career history, writing and a contact form.
 
-Currently, two official plugins are available:
+Built with React 18, Vite, React Router and Framer Motion. Deployed on Vercel.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Run locally
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev        # site only, http://localhost:5173
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The contact form posts to a Vercel serverless function (`api/contact.js`). To run the
+site and the function together, use the Vercel CLI:
+
+```bash
+npx vercel dev
+```
+
+## Editing content
+
+All text lives in [`src/data/index.js`](src/data/index.js): skills, experience, awards,
+certifications, blog posts and contact links. Pages read from there, so most updates
+don't touch any component code.
+
+## Contact form setup (Vercel)
+
+Set these environment variables in the Vercel project settings:
+
+| Variable | Value |
+| --- | --- |
+| `EMAIL_USER` | Gmail address that sends the mail |
+| `EMAIL_PASS` | A Gmail [App Password](https://myaccount.google.com/apppasswords) (needs 2-step verification) |
+| `RECIPIENT_EMAIL` | Optional. Where messages go; defaults to `EMAIL_USER` |
+
+## Project layout
+
+```
+api/contact.js       serverless function that emails form submissions
+public/              favicon and link-preview image
+src/data/index.js    all site content
+src/components/      layout, navbar, footer, shared bits
+src/pages/           one file per route
+src/styles/          one stylesheet per page; tokens live in src/index.css
+```

@@ -1,22 +1,20 @@
 import { motion } from 'framer-motion';
 
-const FadeIn = ({ children, delay = 0, className = '' }) => {
-    const fadeIn = {
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.6, delay }
-    };
-
-    return (
-        <motion.div
-            className={className}
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={fadeIn.transition}
-        >
-            {children}
-        </motion.div>
-    );
+// Fades content up as it scrolls into view (once). Turned off automatically
+// for visitors who prefer reduced motion (see MotionConfig in App.jsx).
+const FadeIn = ({ children, delay = 0, className = '', as = 'div' }) => {
+  const Component = motion[as] ?? motion.div;
+  return (
+    <Component
+      className={className}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '0px 0px -60px 0px' }}
+      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </Component>
+  );
 };
 
 export default FadeIn;

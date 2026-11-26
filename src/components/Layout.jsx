@@ -1,29 +1,27 @@
-import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
-import { getNavigation } from '../services/dataService';
+import Footer from './Footer';
+import { navigation } from '../data';
 
 const Layout = () => {
-  const [navLinks, setNavLinks] = useState([]);
+  const { pathname } = useLocation();
 
+  // Start each page at the top, like a normal site.
   useEffect(() => {
-    const fetchNav = async () => {
-      const links = await getNavigation();
-      setNavLinks(links);
-    };
-    fetchNav();
-  }, []);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
-    <>
-      <Navbar links={navLinks} />
-      <main className="main-content">
-        <div className="page-container">
-          <Outlet />
-        </div>
+    <div className="app">
+      <a href="#main" className="skip-link">Skip to content</a>
+      <Navbar links={navigation} />
+      <main id="main" className="main-content">
+        <Outlet />
       </main>
-    </>
+      <Footer />
+    </div>
   );
 };
 
-export default Layout; 
+export default Layout;
