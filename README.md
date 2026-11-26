@@ -8,15 +8,12 @@ Built with React 18, Vite, React Router and Framer Motion. Deployed on Vercel.
 
 ```bash
 npm install
-npm run dev        # site only, http://localhost:5173
+npm run dev        # http://localhost:8000
 ```
 
-The contact form posts to a Vercel serverless function (`api/contact.js`). To run the
-site and the function together, use the Vercel CLI:
-
-```bash
-npx vercel dev
-```
+The contact form posts to `api/contact.js`. On Vercel it runs as a serverless function;
+in `npm run dev` the dev server runs it for you. To send real email locally, copy
+`.env.example` to `.env` and fill in `EMAIL_USER` and `EMAIL_PASS`, then restart `npm run dev`.
 
 ## Editing content
 
