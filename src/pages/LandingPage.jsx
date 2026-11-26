@@ -31,7 +31,9 @@ const LandingPage = () => {
           </p>
           <div className="hero-actions">
             <Link to="/career" className="btn btn-primary">See my work</Link>
-            <Link to="/contact" className="btn btn-ghost">Get in touch</Link>
+            <a href={contact.resume.url} download={contact.resume.fileName} className="btn btn-ghost">
+              <SocialIcon name="download" /> Download résumé
+            </a>
           </div>
           <ul className="hero-social" aria-label="Elsewhere">
             {contact.socials.map((s) => (

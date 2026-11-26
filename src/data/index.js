@@ -188,6 +188,11 @@ export const career = {
 
 export const contact = {
     email: 'pavankalyanpayyavula24@gmail.com',
+    // Served from public/. Replace that file to update the resume everywhere.
+    resume: {
+        url: '/PavanKalyan-Resume.pdf',
+        fileName: 'PavanKalyan-Payyavula-Resume.pdf'
+    },
     socials: [
         {
             name: 'LinkedIn',

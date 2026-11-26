@@ -87,6 +87,15 @@ const ContactPage = () => {
                 </a>
               </li>
             ))}
+            <li>
+              <a href={contact.resume.url} download={contact.resume.fileName}>
+                <SocialIcon name="resume" className="contact-icon" />
+                <span>
+                  <strong>Résumé</strong>
+                  <span>Download PDF</span>
+                </span>
+              </a>
+            </li>
           </ul>
         </FadeIn>
 

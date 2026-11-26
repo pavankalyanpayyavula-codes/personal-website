@@ -1,6 +1,7 @@
 import FadeIn from '../components/FadeIn';
 import useDocumentTitle from '../hooks/useDocumentTitle';
-import { career } from '../data';
+import SocialIcon from '../components/SocialIcon';
+import { career, contact } from '../data';
 import '../styles/CareerPage.css';
 
 const CareerPage = () => {
@@ -13,6 +14,9 @@ const CareerPage = () => {
         <span className="eyebrow">Career</span>
         <h1>Experience</h1>
         <p>Where I&apos;ve worked, what I built there, and the recognition along the way.</p>
+        <a href={contact.resume.url} download={contact.resume.fileName} className="btn btn-primary resume-btn">
+          <SocialIcon name="download" /> Download résumé (PDF)
+        </a>
       </FadeIn>
 
       <ol className="timeline">
