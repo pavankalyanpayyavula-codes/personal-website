@@ -71,9 +71,23 @@
 .nav-links a:hover {
   color: var(--ink);
 }
+.nav-links a {
+  position: relative;
+}
 .nav-links a.is-active {
   color: var(--ink);
+}
+/* The active-link highlight; framer-motion slides it between links. */
+.nav-pill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: var(--r-full);
   background: var(--surface-2);
+}
+.nav-label {
+  position: relative;
+  z-index: 1;
 }
 
 .menu-toggle {
@@ -153,5 +167,8 @@
   .nav-links a.is-active {
     background: none;
     color: var(--accent);
+  }
+  .nav-pill {
+    display: none;
   }
 }

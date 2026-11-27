@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Logo from './Logo';
 import type { NavLink as NavLinkItem } from '../types/content';
 import '../styles/Navbar.css';
@@ -58,7 +59,20 @@ const Navbar = ({ links = [] }: NavbarProps) => {
           {links.map((link) => (
             <li key={link.path}>
               <NavLink to={link.path} className={({ isActive }) => (isActive ? 'is-active' : '')}>
-                {link.name}
+                {({ isActive }) => (
+                  <>
+                    {/* One shared highlight that slides to whichever link is active. */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        className="nav-pill"
+                        aria-hidden="true"
+                        transition={{ type: 'spring', stiffness: 420, damping: 36 }}
+                      />
+                    )}
+                    <span className="nav-label">{link.name}</span>
+                  </>
+                )}
               </NavLink>
             </li>
           ))}

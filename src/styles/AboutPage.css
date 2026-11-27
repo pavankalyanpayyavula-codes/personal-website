@@ -86,3 +86,17 @@
     gap: 0.35rem;
   }
 }
+
+/* Lift on hover. Uses `translate`, not `transform`, because FadeIn owns the
+   inline transform on these cards. */
+.skill-card {
+  transition:
+    translate 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.skill-card:hover {
+  translate: 0 -4px;
+  box-shadow: var(--shadow);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}

@@ -182,3 +182,41 @@
     gap: 0.25rem;
   }
 }
+
+/* ---------- Hover motion ----------
+   These use `translate`, not `transform`, because FadeIn owns the inline
+   transform on the animated elements. */
+.hero-photo::before {
+  transition: inset 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-photo img {
+  transition: translate 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-photo:hover::before {
+  inset: 22px -22px -22px 22px;
+}
+.hero-photo:hover img {
+  translate: -4px -4px;
+}
+
+.work-item h3 {
+  transition:
+    translate 0.25s ease,
+    color 0.25s ease;
+}
+.work-item:hover h3 {
+  translate: 6px 0;
+  color: var(--accent);
+}
+
+.focus .tag {
+  transition:
+    translate 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.focus .tag:hover {
+  translate: 0 -2px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}

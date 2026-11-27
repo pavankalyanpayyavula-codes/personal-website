@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import FadeIn from '../components/FadeIn';
+import CountUp from '../components/CountUp';
 import SocialIcon from '../components/SocialIcon';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import { home, career, contact, careerStartYear } from '../data';
@@ -8,6 +9,9 @@ import '../styles/LandingPage.css';
 // Load the hero photo first. React 18's types don't know `fetchpriority` yet,
 // and it must stay lowercase in the DOM, so it's passed as a plain attribute.
 const HIGH_PRIORITY = { fetchpriority: 'high' } as Record<string, string>;
+
+// Seconds between each hero line appearing.
+const HERO_STEP = 0.08;
 
 const LandingPage = () => {
   useDocumentTitle();
@@ -34,15 +38,21 @@ const LandingPage = () => {
   return (
     <div className="landing">
       <section className="hero container">
-        <FadeIn className="hero-copy">
-          <span className="eyebrow">Senior Software Engineer · Hyderabad, India</span>
-          <h1>Pavan Kalyan Payyavula</h1>
-          <p className="hero-lead">
-            Front-end engineer with {years}+ years building React and TypeScript applications. I
-            lead a team of four developers on Apple Maps review tools, covering architecture, code
-            review, mentoring and technical hiring.
-          </p>
-          <div className="hero-actions">
+        <div className="hero-copy">
+          <FadeIn>
+            <span className="eyebrow">Senior Software Engineer · Hyderabad, India</span>
+          </FadeIn>
+          <FadeIn delay={HERO_STEP}>
+            <h1>Pavan Kalyan Payyavula</h1>
+          </FadeIn>
+          <FadeIn delay={HERO_STEP * 2}>
+            <p className="hero-lead">
+              Front-end engineer with {years}+ years building React and TypeScript applications. I
+              lead a team of four developers on Apple Maps review tools, covering architecture, code
+              review, mentoring and technical hiring.
+            </p>
+          </FadeIn>
+          <FadeIn className="hero-actions" delay={HERO_STEP * 3}>
             <Link to="/career" className="btn btn-primary">
               See my work
             </Link>
@@ -53,19 +63,21 @@ const LandingPage = () => {
             >
               <SocialIcon name="download" /> Download résumé
             </a>
-          </div>
-          <ul className="hero-social" aria-label="Elsewhere">
-            {contact.socials.map((s) => (
-              <li key={s.name}>
-                <a href={s.url} target="_blank" rel="noopener noreferrer">
-                  <SocialIcon name={s.icon} /> {s.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </FadeIn>
+          </FadeIn>
+          <FadeIn delay={HERO_STEP * 4}>
+            <ul className="hero-social" aria-label="Elsewhere">
+              {contact.socials.map((s) => (
+                <li key={s.name}>
+                  <a href={s.url} target="_blank" rel="noopener noreferrer">
+                    <SocialIcon name={s.icon} /> {s.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+        </div>
 
-        <FadeIn className="hero-photo" delay={0.1}>
+        <FadeIn className="hero-photo" delay={HERO_STEP * 2}>
           <img
             src={home.profileImage}
             alt="Pavan Kalyan smiling with arms outstretched in front of green mountains"
@@ -80,7 +92,7 @@ const LandingPage = () => {
         <FadeIn as="ul" className="stats">
           {stats.map((s) => (
             <li key={s.label}>
-              <span className="stat-value">{s.value}</span>
+              <CountUp value={s.value} className="stat-value" />
               <span className="stat-label">{s.label}</span>
             </li>
           ))}
